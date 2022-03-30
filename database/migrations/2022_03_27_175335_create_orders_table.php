@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('works', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('owned_by');
             $table->foreign('owned_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->date('issued_at')->default(date('Y-m-d'));
+            $table->string('waybill_no')->nullable();
+            $table->date('date_issued')->default(date('Y-m-d'));
+            $table->integer('quantity');
+            $table->enum('value', ['pcs', 'sets'])->default('sets');
             $table->text('description');
-            $table->string('customer');
-            $table->date('due_at')->nullable();
+            $table->string('customer_name');
             $table->unsignedInteger('issued_by');
             $table->foreign('issued_by')->references('id')->on('contacts')->onDelete('cascade')->onUpdate('cascade');
+            $table->date('deadline')->nullable();
             $table->enum('status', ['pending', 'complete'])->default('pending');
             $table->timestamps();
         });

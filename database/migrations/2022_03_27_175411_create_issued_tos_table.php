@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('issued_to', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('work_id');
-            $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('contact_id');
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

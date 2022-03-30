@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Contact;
-use App\Models\Work;
+use App\Models\Order;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -19,8 +19,8 @@ class IssuedToFactory extends Factory
     public function definition()
     {
         return [
+            'order_id' => Order::factory(),
             'contact_id' => Contact::factory(),
-            'work_id' => Work::factory(),
         ];
     }
 }

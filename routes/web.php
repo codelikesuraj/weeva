@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +21,16 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $orders = Order::where('owned_by', '=', Auth::user()->id)->orderBy('waybill_no', 'desc')->get();
+    return view('dashboard', [
+        'orders' => $orders,
+    ]);
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/order', [OrderController::class, 'create'])->name('order');
+    Route::post('/order', [OrderController::class, 'store']);
+});
 
 require __DIR__.'/auth.php';

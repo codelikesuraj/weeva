@@ -18,7 +18,7 @@ class ContactFactory extends Factory
     public function definition()
     {
         return [
-            'added_by' => User::factory(),
+            'created_by' => User::factory(),
         ];
     }
 }

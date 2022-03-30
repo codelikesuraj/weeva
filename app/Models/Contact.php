@@ -13,6 +13,6 @@ class Contact extends Model
         'name',
         'phone',
         'type',
-        'added_by'
+        'created_by'
     ];
 }

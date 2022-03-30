@@ -10,7 +10,7 @@ use App\Models\Contact;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Work>
  */
-class WorkFactory extends Factory
+class OrderFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,8 +21,10 @@ class WorkFactory extends Factory
     {
         return [
             'owned_by' => User::factory(),
+            'waybill_no' => '00002022',
+            'quantity' => 20,
             'description' => 'this is a description',
-            'customer' => 'customer name',
+            'customer_name' => 'Mrs. Jane Doe',
             'issued_by' => Contact::factory(),
         ];
     }

@@ -11,7 +11,7 @@ class IssuedTo extends Model
     protected $table = 'issued_to';
 
     protected $fillable = [
-        'work_id',
+        'order_id',
         'contact_id',
     ];
 }
