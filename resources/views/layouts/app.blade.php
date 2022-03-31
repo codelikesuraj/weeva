@@ -56,6 +56,10 @@
 							<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 							Dashboard
 						</a>
+						<a class="nav-link" href="{{route('contacts')}}">
+							<div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
+							Contacts
+						</a>
 
 						<!-- Section -->
 						<div class="sb-sidenav-menu-heading">Menu Heading</div>

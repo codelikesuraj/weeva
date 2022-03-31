@@ -18,22 +18,22 @@
       <table id="datatablesSimple">
         <thead>
           <tr>
-            <th class="bg-blue-100 p-2 border">Waybill No</th>
-            <th class="bg-blue-100 p-2 border">Description</th>
-            <th class="bg-blue-100 p-2 border">Customer Name</th>
-            <th class="bg-blue-100 p-2 border">Issued By</th>
-            <th class="bg-blue-100 p-2 border">Issued On</th>
-            <th class="bg-blue-100 p-2 border">Deadline</th>
+            <th class="p-2">Waybill No</th>
+            <th class="p-2">Description</th>
+            <th class="p-2">Customer Name</th>
+            <th class="p-2">Issued By</th>
+            <th class="p-2">Issued On</th>
+            <th class="p-2">Deadline</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th class="bg-blue-100 p-2 border">Waybill No</th>
-            <th class="bg-blue-100 p-2 border">Description</th>
-            <th class="bg-blue-100 p-2 border">Customer Name</th>
-            <th class="bg-blue-100 p-2 border">Issued By</th>
-            <th class="bg-blue-100 p-2 border">Issued On</th>
-            <th class="bg-blue-100 p-2 border">Deadline</th>
+            <th class="p-2">Waybill No</th>
+            <th class="p-2">Description</th>
+            <th class="p-2">Customer Name</th>
+            <th class="p-2">Issued By</th>
+            <th class="p-2">Issued On</th>
+            <th class="p-2">Deadline</th>
           </tr>
         </tfoot>
         <tbody>
