@@ -115,9 +115,9 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-                <div class="container-fluid px-4">
+          <div class="container-fluid px-0">
 				    {{$slot}}
-                </div>
+          </div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">
