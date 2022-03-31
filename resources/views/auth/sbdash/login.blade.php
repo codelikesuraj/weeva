@@ -2,6 +2,9 @@
 	<x-slot name="title">Login</x-slot>
 	<div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
 	<div class="card-body">
+		<!-- Session Status -->
+    <x-sbdash.auth-session-status class="mb-4" :status="session('status')" />
+
 		<!-- Validation Errors -->
     <x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -16,7 +19,7 @@
 
 			<!-- Password -->
 			<div class="form-floating mb-3">
-				<input class="form-control" id="password" type="password" name="password" placeholder="Password"/>
+				<input class="form-control" id="password" type="password" name="password" placeholder="Password" required />
 				<label for="password">Password</label>
 			</div>
 
