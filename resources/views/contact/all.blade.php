@@ -16,7 +16,8 @@
 					Contacts
 				</div>
 				<div>
-					<button class="btn btn-success" href="#">Add new</button>
+					<!-- Button trigger modal -->
+					<a class="btn btn-success" href="{{route('create-contact')}}">Add new</a>
 				</div>
 			</h4>
 		</div>
