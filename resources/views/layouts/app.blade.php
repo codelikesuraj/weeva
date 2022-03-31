@@ -115,7 +115,7 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-          <div class="container-fluid px-0">
+          <div class="container-fluid px-1">
 				    {{$slot}}
           </div>
 			</main>
