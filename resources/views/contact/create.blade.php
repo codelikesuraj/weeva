@@ -7,7 +7,7 @@
 	<ol class="breadcrumb mb-4">
 		<li class="breadcrumb-item active">Contacts</li>
 	</ol>
-	<a href="{{route('contacts')}}" class="mb-2 btn btn-danger" data-bs-dismiss="modal">Go back to contacts</a>
+	<a href="{{route('contacts')}}" class="mb-2 btn btn-danger">Go back to contacts</a>
 
 	<div class="card mb-4">
 		<div class="card-header">
