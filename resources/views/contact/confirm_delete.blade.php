@@ -14,7 +14,7 @@
 		<form method="POST" action="{{route('delete-contact')}}">
 			@csrf
 			<input type="hidden" name="contact_id" value="{{$contact->id}}">
-			<a href="{{route('contacts')}}"><button>No</button></a> | 
+			<a href="{{route('contacts')}}">No</a> | 
 			<input type="submit" name="submit" value="Yes, I am sure">
 		</form>
 	</p>
