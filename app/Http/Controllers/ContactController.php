@@ -22,7 +22,7 @@ class ContactController extends Controller
     public function store(Request $request){
         $request->validate([
             'name' => ['required', 'string', 'min:3'],
-            'phone' => ['unique:contacts'],
+            'phone' => ['nullable'],
             'type' => ['required'],
         ]);
 
