@@ -29,7 +29,7 @@
 
 				<!-- Phone Number -->
 				<div class="mb-3">
-					<input class="form-control" id="phone" type="text" placeholder="Phone Number" required autofocus value="{{old('phone')}}" name="phone"/>
+					<input class="form-control" id="phone" type="text" placeholder="Phone Number" autofocus value="{{old('phone')}}" name="phone"/>
 				</div>
 
 				<!-- Contact Type -->
