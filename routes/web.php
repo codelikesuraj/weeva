@@ -28,8 +28,8 @@ Route::middleware('auth')->group(function () {
         $user_id = Auth::user()->id;
         $orders = Order::where('owned_by', '=', $user_id)->orderBy('waybill_no', 'desc')->get();
         $contact_count = Contact::where([
-            'created_by', '=', $user_id,
-            'type', '=', 'sales'
+            ['created_by', '=', $user_id],
+            ['type', '=', 'sales'],
         ])->count();
         return view('dashboard', [
             'orders' => $orders,
