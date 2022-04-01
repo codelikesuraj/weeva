@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('phone')->nullable();
             $table->enum('type', ['weaver', 'sales'])->default('sales');
             $table->unsignedInteger('created_by');
