@@ -18,7 +18,7 @@
         @foreach($orders as $order)
           <div class="m-1 list-item">
             <strong>No:</strong> {{$order->waybill_no}}<br/>
-            {{$order->quantity.' '.$order->value.' '.$order->description}}
+            {{$order->quantity.' '.$order->value.' of '.$order->description}}
           </div><hr class="my-2">
         @endforeach
       @else
