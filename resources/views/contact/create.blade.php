@@ -3,10 +3,7 @@
 		Contacts | Create
 	</x-slot>
 
-	<h1 class="mt-4">Contacts</h1>
-	<ol class="breadcrumb mb-4">
-		<li class="breadcrumb-item active">Contacts</li>
-	</ol>
+	<h1 class="m-4">Contacts > Create</h1>
 	<a href="{{route('contacts')}}" class="mb-2 btn btn-danger">Go back to contacts</a>
 
 	<div class="card mb-4">

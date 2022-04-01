@@ -1,94 +1,101 @@
 <x-app-layout>
-	<x-slot name="header">
-		<h2 class="font-semibold text-xl text-gray-800 leading-tight">
-			{{ __('Create Order') }}
-		</h2>
+	<x-slot name="title">
+		Orders | Create
 	</x-slot>
 
-	<div class="py-12">
-		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-			<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-				<div class="p-6 bg-white border-b border-gray-200">
-					<!-- Validation Errors -->
-					<x-auth-validation-errors class="mb-4" :errors="$errors" />
+	<h1 class="m-4">Orders</h1>
+	<a href="{{route('dashboard')}}" class="m-2 btn btn-outline-danger">Go back to dashboard</a>
 
-					<form method="POST" action="{{ route('order') }}">
-						@csrf
-
-						<!-- Waybill Number -->
-						<div class="mt-4">
-							<x-label for="waybill_no" :value="__('Waybill No')" />
-
-							<x-input id="waybill_no" class="block mt-1 w-full" type="text" name="waybill_no" :value="old('waybill_no')" required autofocus />
-						</div>
-
-						<!-- Date Issued -->
-						<div class="mt-4">
-							<x-label for="date_issued" :value="__('Date Issued')" />
-
-							<x-input id="date_issued" class="block mt-1 w-full" type="date" name="date_issued" :value="old('date_issued')" required autofocus />
-						</div>
-
-						<!-- Quantity and Value -->
-						<div class="flex items-center justify-start mt-4">
-							<div>
-								<x-label for="quantity" :value="__('Quantity')" />
-
-								<x-input id="quantity" class="block mt-1" type="number" name="quantity" :value="old('quantity')" placeholder="1" required autofocus />
-							</div>
-							<div>
-								<x-label for="Value" :value="__('Value')" />
-
-								<x-select id="value" class="block mt-1 w-full" name="value" required autofocus>
-									<option value="" default>--select--</option>
-									<option value="pcs">pcs</option>
-									<option value="sets">sets</option>
-								</x-select>
-							</div>
-						</div>
-
-						<!-- Description -->
-						<div class="mt-4">
-							<x-label for="description" :value="__('Description')" />
-
-							<x-textarea id="description" class="block mt-1 w-full" type="text" rows="4" name="description" required autofocus>{{old('description')}}</x-textarea>
-						</div>
-
-						<!-- Customer Name -->
-						<div class="mt-4">
-							<x-label for="customer_name" :value="__('Customer Name')" />
-
-							<x-input id="customer_name" class="block mt-1 w-full" type="text" name="customer_name" :value="old('customer_name')" required autofocus />
-						</div>
-
-						<!-- Issued By -->
-						<div class="mt-4">
-							<x-label for="issued_by" :value="__('Issued By')" />
-
-								<x-select id="issued_by" class="block mt-1 w-full" name="issued_by" required autofocus>
-									<option value="" default>--select--</option>
-									@foreach($contacts as $contact)
-										<option value="{{$contact->id}}">{{ucwords($contact->name)}}</option>
-									@endforeach
-								</x-select>
-						</div>
-
-						<!-- Deadline -->
-						<div class="mt-4">
-							<x-label for="deadline" :value="__('Deadline')" />
-
-							<x-input id="deadline" class="block mt-1 w-full" type="date" name="deadline" :value="old('deadline')" required autofocus />
-						</div>
-
-						<div class="flex items-center justify-end mt-4">
-
-							<x-button class="ml-4">
-								{{ __('Save') }}
-							</x-button>
-						</div>
-					</form>
+	<div class="card mb-4">
+		<div class="card-header">
+			<h4 class="d-flex justify-content-between align-items-center">
+				<div>
+					<i class="fas fa-user me-1"></i>
+					Create Order
 				</div>
-			</div>
+			</h4>
+		</div>
+
+		<div class="card-body p-4">
+			<form method="POST" action="{{ route('order') }}">
+				@csrf
+				<!-- Validation Errors -->
+				<x-sbdash.auth-validation-errors :class="'mb-4 small'" :errors="$errors" />
+
+				<!-- Waybill Number -->
+				<div class="mb-3 row">
+					<div class="col-12 col-lg-6">
+						<label class="form-label" for="waybill_no">Waybill Number</label>
+						<input id="waybill_no" class="form-control" type="text" name="waybill_no" value="{{old('waybill_no')}}" required autofocus />
+					</div>
+				</div>
+
+				<div class="row">
+					<!-- Date Issued -->
+					<div class="mb-3 col-lg-3 col-8">
+						<label class="form-label" for="date_issued">Date Issued</label>
+						<input id="date_issued" class="form-control" type="date" name="date_issued" value="{{old('date_issued')}}" required autofocus />
+					</div>
+					<!-- Deadline -->
+					<div class="mb-3 col-lg-3 col-8">
+						<label class="form-label" for="deadline">Deadline</label>
+						<input id="deadline" class="form-control" type="date" name="deadline" value="{{old('deadline')}}" required autofocus />
+					</div>
+				</div>
+
+				<!-- Quantity and Value -->
+				<div class="row">
+					<div class="mb-3 col-6 col-lg-1">
+						<label class="form-label" for="quantity">Quantity</label>
+						<input id="quantity" class="form-control" type="number" name="quantity" value="{{old('quantity')}}"  required autofocus />
+					</div>
+					<div class="mb-3 col-6 col-lg-2">
+						<label class="form-label" for="value">Value</label>
+						<select id="value" class="form-select" name="value" required autofocus>
+							<option value="">--Select--</option>
+							<option value="pcs" {{old('value') == 'pcs' ? 'selected' : ''}}>pcs</option>
+							<option value="sets" {{old('value') == 'sets' ? 'selected' : ''}}>sets</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- Description -->
+				<div class="mb-3 row">
+					<div class="col-12 col-lg-6">
+						<label class="form-label" for="description">Description</label>
+						<textarea id="description" class="form-control" type="text" rows="4" name="description" placeholder="Enter order description here" required autofocus>{{old('description')}}</textarea>
+					</div>
+				</div>
+
+				<!-- Customer Name -->
+				<div class="mb-3 row">
+					<div class="col-12 col-lg-6">
+						<label class="form-label" for="customer_name">Customer Name</label>
+						<input id="customer_name" class="form-control" type="text" name="customer_name" value="{{old('customer_name')}}" required autofocus />
+					</div>
+				</div>
+
+				<!-- Issued By -->
+				<div class="mb-3 row">
+					<div class="col-9 col-lg-4">
+						<label class="form-label" for="issued_by">Issued By</label>
+						<select id="issued_by" class="form-select" name="issued_by" required autofocus>
+							<option value="">-- Issued By --</option>
+							@foreach($contacts as $contact)
+								<option value="{{$contact->id}}" {{old('issued_by') == $contact->id ? 'selected' : ''}}>{{ucwords($contact->name)}}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+
+				
+
+				<!-- Submit -->
+				<div class="mb-3 d-flex justify-content-start">
+					<button type="submit" name="submit" class="btn btn-success">Save order</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </x-app-layout>
+

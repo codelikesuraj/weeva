@@ -22,15 +22,21 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/dashboard', function () {
-    $orders = Order::where('owned_by', '=', Auth::user()->id)->orderBy('waybill_no', 'desc')->get();
-    return view('dashboard', [
-        'orders' => $orders,
-    ]);
-})->middleware(['auth'])->name('dashboard');
-
-
 Route::middleware('auth')->group(function () {
+    // dashboard
+    Route::get('/dashboard', function () {
+        $user_id = Auth::user()->id;
+        $orders = Order::where('owned_by', '=', $user_id)->orderBy('waybill_no', 'desc')->get();
+        $contact_count = Contact::where([
+            'created_by', '=', $user_id,
+            'type', '=', 'sales'
+        ])->count();
+        return view('dashboard', [
+            'orders' => $orders,
+            'contact_count' => $contact_count,
+        ]);
+    })->name('dashboard');
+
     // orders
     Route::get('/orders', [OrderController::class, 'create'])->name('order');
     Route::post('/orders', [OrderController::class, 'store']);

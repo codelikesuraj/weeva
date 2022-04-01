@@ -4,9 +4,6 @@
   </x-slot>
 
   <h1 class="mt-4">Dashboard</h1>
-  <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Dashboard</li>
-  </ol>
   <div class="card mb-4">
     <div class="card-header d-flex justify-content-between align-items-center">
       <div>
@@ -26,7 +23,12 @@
         @endforeach
       @else
         <div class="m-1 list-item">
-          <p>No orders yet !!!</p>
+          @if($contact_count < 1)
+            <p class="fs-5 text-center">You don't have any <strong>sales</strong> contact saved yet !!!<br/>Click the button below to add one now </p>
+            <div class="d-flex justify-content-center"><a class="m-auto btn btn-info" href="{{route('create-contact')}}">Add Contact</a></div>
+          @else
+            <p>No orders yet !!!</p>
+          @endif
         </div>
       @endif
     </div>
