@@ -13,12 +13,26 @@
         <a href="{{route('order')}}" class="btn btn-success p-1 px-2 ">Add</a>
       </div>
     </div>
-    <div class="py-1 card-body">
+    <div class="p-1 card-body">
       @if($orders && $orders->count()>0)
         @foreach($orders as $order)
-          <div class="m-1 list-item">
-            <strong>No:</strong> {{$order->waybill_no}}<br/>
-            {{$order->quantity.' '.$order->value.' of '.$order->description}}
+          <div class="mx-1 list-item">
+            <div class="d-flex justify-content-between">
+              <div>
+                <strong>No:&nbsp;</strong><a class="text-dark" href="#">{{$order->waybill_no}}</a>
+             </div>
+              <div>
+                <strong>From:&nbsp;</strong><a class="text-dark" href="#">{{$order->issuedBy->name}}</a>
+              </div>
+            </div>
+            <div class="my-1 p-2" style="background: #eeeeee;">
+              <a href="#" class="text-decoration-none text-body">
+                {{$order->quantity.' '.$order->value.' of '.$order->description}}
+              </a>
+            </div>
+            <div class="d-flex justify-content-end">
+              <strong>Customer:&nbsp;</strong>{{ucwords($order->customer_name)}}
+            </div>
           </div><hr class="my-2">
         @endforeach
       @else
