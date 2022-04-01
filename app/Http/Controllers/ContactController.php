@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function index() {
         return view('contact.all', [
-            'contacts' => Contact::latest()->get()
+            'contacts' => Contact::where('created_by','=',Auth::user()->id)->latest()->get()
         ]);
     }
 
@@ -20,7 +20,7 @@ class ContactController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name' => ['required', 'string', 'min:3', 'unique:contacts'],
+            'name' => ['required', 'string', 'min:3', 'unique'],
             'phone' => ['min:11', 'unique:contacts'],
             'type' => ['required'],
         ]);
