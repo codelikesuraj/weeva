@@ -16,7 +16,7 @@
     <div class="p-1 card-body">
       @if($orders && $orders->count()>0)
         @foreach($orders as $order)
-          <div class="mx-1 list-item">
+          <div class="mx-1 px-1 list-item">
             <div class="d-flex justify-content-between">
               <div>
                 <strong>No:&nbsp;</strong><a class="text-dark" href="#">{{$order->waybill_no}}</a>
@@ -33,7 +33,7 @@
             <div class="d-flex justify-content-end">
               <strong>Customer:&nbsp;</strong>{{ucwords($order->customer_name)}}
             </div>
-          </div><hr class="my-2">
+          </div><hr class="my-3">
         @endforeach
       @else
         <div class="m-1 list-item">
