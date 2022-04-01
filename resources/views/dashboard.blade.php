@@ -8,51 +8,27 @@
     <li class="breadcrumb-item active">Dashboard</li>
   </ol>
   <div class="card mb-4">
-    <div class="card-header">
-      <h4>
-        <i class="fas fa-table me-1"></i>
-        Pending Order
-      </h4>
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div>
+        <h4 class="fs-4"><i class="fas fa-table me-1"></i>Pending Order</h4>
+      </div>
+      <div>
+        <a href="{{route('order')}}" class="btn btn-success p-1 px-2 ">Add</a>
+      </div>
     </div>
-    <div class="card-body">
-      <table id="datatablesSimple">
-        <thead>
-          <tr>
-            <th class="p-2">Waybill No</th>
-            <th class="p-2">Description</th>
-            <th class="p-2">Customer Name</th>
-            <th class="p-2">Issued By</th>
-            <th class="p-2">Issued On</th>
-            <th class="p-2">Deadline</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th class="p-2">Waybill No</th>
-            <th class="p-2">Description</th>
-            <th class="p-2">Customer Name</th>
-            <th class="p-2">Issued By</th>
-            <th class="p-2">Issued On</th>
-            <th class="p-2">Deadline</th>
-          </tr>
-        </tfoot>
-        <tbody>
-          @if($orders && $orders->count()>0)
-          @foreach($orders as $order)
-          <tr>
-            <td class="border p-2 text-center">{{$order->waybill_no}}</td>
-            <td class="border p-2 text-center">{{$order->quantity.' '.$order->value.' '.$order->description}}</td>
-            <td class="border p-2 text-center">{{$order->customer_name}}</td>
-            <td class="border p-2 text-center">{{ucwords($order->issuedBy->name)}}</td>
-            <td class="border p-2 text-center">{{$order->date_issued}}</td>
-            <td class="border p-2 text-center">{{$order->deadline ? $order->deadline : '-----'}}</td>
-          </tr>
-          @endforeach
-          @else
-          <tr><td class="p-6" colspan="6">No orders yet !!!</td></tr>
-          @endif
-        </tbody>
-      </table>
+    <div class="py-1 card-body">
+      @if($orders && $orders->count()>0)
+        @foreach($orders as $order)
+          <div class="m-1 list-item">
+            <strong>No:</strong> {{$order->waybill_no}}<br/>
+            {{$order->quantity.' '.$order->value.' '.$order->description}}
+          </div><hr class="my-2">
+        @endforeach
+      @else
+        <div class="m-1 list-item">
+          <p>No orders yet !!!</p>
+        </div>
+      @endif
     </div>
   </div>
 
