@@ -25,8 +25,18 @@ class ContactController extends Controller
             'phone' => ['nullable'],
             'type' => ['required'],
         ]);
+        
+        if(Contact::where([
+            ['name','=',$request->name],
+            ['created_by', '=', Auth::user()->id]
+        ])->count()):
+            return redirect()
+            ->back()
+            ->withErrors(['name already exists'])
+            ->withInput();
+        endif;
 
-        $order = Contact::create([
+        $contact = Contact::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'type' => $request->type,
