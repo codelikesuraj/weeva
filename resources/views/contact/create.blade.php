@@ -36,8 +36,8 @@
 				<div class="mb-3">
 					<select id="type" class="form-select" name="type" required >
 						<option value="">Select Contact Type</option>
-						<option value="sales">Sales</option>
-						<option value="weaver">Weaver</option>
+						<option value="sales" {{old('type') == 'sales' ? 'selected' : ''}}>Sales</option>
+						<option value="weaver" {{old('type') == 'weaver' ? 'selected' : ''}}>Weaver</option>
 					</select>
 				</div>
 
