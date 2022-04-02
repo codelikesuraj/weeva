@@ -3,7 +3,7 @@
 		Orders | Create
 	</x-slot>
 
-	<h1 class="m-4">Orders</h1>
+	<h1 class="m-4 mx-1">Orders</h1>
 	<a href="{{route('dashboard')}}" class="m-2 btn btn-outline-danger">Go back to dashboard</a>
 
 	<div class="card mb-4">

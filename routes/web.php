@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     // orders
     Route::get('/orders', [OrderController::class, 'create'])->name('order');
     Route::post('/orders', [OrderController::class, 'store']);
+    Route::get('/orders/waybill_no/{waybill_no}', [OrderController::class, 'waybillNo'])->name('waybillNo');
+    Route::get('/orders/issued_by/{issued_by}', [OrderController::class, 'issuedBy'])->name('issuedBy');
 
     // contacts
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');

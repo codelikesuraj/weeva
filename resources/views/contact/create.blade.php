@@ -3,7 +3,7 @@
 		Contacts | Create
 	</x-slot>
 
-	<h1 class="m-4">Contacts > Create</h1>
+	<h1 class="m-4 mx-1">Contacts > Create</h1>
 	<a href="{{route('contacts')}}" class="mb-2 btn btn-danger">Go back to contacts</a>
 
 	<div class="card mb-4">

@@ -3,7 +3,7 @@
 		Contacts
 	</x-slot>
 
-	<h1 class="mt-4">Contacts</h1>
+	<h1 class="m-4 mx-1">Contacts</h1>
 	<ol class="breadcrumb mb-4">
 		<li class="breadcrumb-item active">Contacts</li>
 	</ol>
