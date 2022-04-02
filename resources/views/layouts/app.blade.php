@@ -18,7 +18,10 @@
 		<!-- Navbar Brand-->
 		<a class="navbar-brand ps-3" href="{{route('dashboard')}}">Weeva</a>
 		<!-- Sidebar Toggle-->
-		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+			<!-- <i class="fas fa-bars"></i> -->
+			<span class="text-white text-underline-none fs-6">Menu</span>
+		</button>
 		<!-- Navbar Search-->
 		<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 			<div class="input-group">
@@ -86,7 +89,7 @@
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="{{route('create-contact')}}">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-plus"></i>
+										<i class="fas fa-plus fa-2x"></i>
 									</div>Add new contact
 								</a>
 								<a class="nav-link" href="{{route('contacts')}}">
@@ -96,6 +99,14 @@
 								</a>
 							</nav>
 						</div>
+
+						<!-- Section -->
+						<div class="sb-sidenav-menu-heading">Account</div>
+						<a class="nav-link" href="{{route('logout')}}">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-sign-out-alt"></i>
+							</div>Logout
+						</a>
 
 						<!-- Section -->
 						<!-- <div class="sb-sidenav-menu-heading">Menu Heading</div>
