@@ -56,13 +56,49 @@
 							<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 							Dashboard
 						</a>
-						<a class="nav-link" href="{{route('contacts')}}">
-							<div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
-							Contacts
+						<!-- Orders -->
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#ordersMenu" aria-expanded="false" aria-controls="collapseLayouts">
+							<div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+							Orders
+							<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 						</a>
+						<div class="collapse" id="ordersMenu" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="{{route('order')}}">
+									<div class="sb-nav-link-icon">
+										<i class="fas fa-plus"></i>
+									</div>Add new order
+								</a>
+								<!-- <a class="nav-link" href="{{route('contacts')}}">
+									<div class="sb-nav-link-icon">
+										<i class="fas fa-hourglass"></i>
+									</div>View pending orders
+								</a> -->
+							</nav>
+						</div>
+						<!-- Contacts -->
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#contactsMenu" aria-expanded="false" aria-controls="collapseLayouts">
+							<div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+							Contacts
+							<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+						</a>
+						<div class="collapse" id="contactsMenu" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="{{route('create-contact')}}">
+									<div class="sb-nav-link-icon">
+										<i class="fas fa-plus"></i>
+									</div>Add new contact
+								</a>
+								<a class="nav-link" href="{{route('contacts')}}">
+									<div class="sb-nav-link-icon">
+										<i class="fas fa-eye"></i>
+									</div>View all contacts
+								</a>
+							</nav>
+						</div>
 
 						<!-- Section -->
-						<div class="sb-sidenav-menu-heading">Menu Heading</div>
+						<!-- <div class="sb-sidenav-menu-heading">Menu Heading</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
 							Menu 1
@@ -104,7 +140,7 @@
 									</nav>
 								</div>
 							</nav>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
