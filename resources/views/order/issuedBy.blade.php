@@ -30,7 +30,8 @@
              		{{ucfirst($order->status)}}</span>
             </div>
             <div>
-              <strong>Waybill No:&nbsp;</strong><a class="text-dark" href="#">{{$order->waybill_no}}</a>
+            	<strong>No:&nbsp;</strong>
+               <a class="text-dark" href="{{route('waybillNo', [$order->waybill_no])}}">{{$order->waybill_no}}</a>
             </div>
           </div>
           <div class="my-1 p-2" style="background: #eeeeee;">

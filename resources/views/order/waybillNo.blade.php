@@ -30,7 +30,8 @@
              		{{ucfirst($order->status)}}</span>
             </div>
             <div>
-              <strong>From:&nbsp;</strong><a class="text-dark" href="#">{{$order->issuedBy->name}}</a>
+              <strong>From:&nbsp;</strong>
+              <a class="text-dark" href="{{route('issuedBy', [$order->issued_by])}}">{{$order->issuedBy->name}}</a>
             </div>
           </div>
           <div class="my-1 p-2" style="background: #eeeeee;">
