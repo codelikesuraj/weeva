@@ -89,7 +89,7 @@
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="{{route('create-contact')}}">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-plus fa-2x"></i>
+										<i class="fas fa-plus"></i>
 									</div>Add new contact
 								</a>
 								<a class="nav-link" href="{{route('contacts')}}">
