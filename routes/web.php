@@ -38,10 +38,13 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     // orders
+    Route::get('/orders/view/{order}', [OrderController::class, 'viewOne'])->name('viewOne');
     Route::get('/orders', [OrderController::class, 'create'])->name('order');
     Route::post('/orders', [OrderController::class, 'store']);
     Route::get('/orders/waybill_no/{waybill_no}', [OrderController::class, 'waybillNo'])->name('waybillNo');
     Route::get('/orders/issued_by/{issued_by}', [OrderController::class, 'issuedBy'])->name('issuedBy');
+    Route::get('/orders/edit/{order}', [OrderController::class, 'edit'])->name('editOrder');
+    Route::post('/orders/edit/{order}', [OrderController::class, 'update']);
 
     // contacts
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');

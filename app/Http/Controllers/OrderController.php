@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    function viewOne(Order $order){
+        return view('order.viewOne')->with([
+            'order'=>$order
+        ]);
+    }
+
     function create(){
         return view('order.create', [
             'contacts' => Contact::where('type', '=', 'sales')->orderBy('name')->get()
@@ -24,7 +30,7 @@ class OrderController extends Controller
             'description' => ['required', 'string', 'min:5'],
             'customer_name' => ['required', 'string', 'min:2'],
             'issued_by' => ['required', 'numeric', 'min:1'],
-            'deadline' => ['date'],
+            'deadline' => ['date', 'nullable'],
         ]);
 
         $order = Order::create([
@@ -39,7 +45,47 @@ class OrderController extends Controller
             'deadline' => $request->deadline,
         ]);
 
-        return redirect('/dashboard');
+        return back()->with([
+            'status'=>'Order has been created successfully'
+        ]);
+    }
+
+    function edit(Order $order){
+        return view('order.edit')->with([
+            'order'=>$order,
+            'contacts' => Contact::where('type', '=', 'sales')->orderBy('name')->get(),
+        ]);
+    }
+
+    function update(Request $request){
+        $request->validate([
+            'waybill_no' => ['required'],
+            'date_issued' => ['required', 'date'],
+            'quantity' => ['required', 'numeric', 'min:1'],
+            'value' => ['required', 'string', 'min:3', 'max:4'],
+            'description' => ['required', 'string', 'min:5'],
+            'customer_name' => ['required', 'string', 'min:2'],
+            'issued_by' => ['required', 'numeric', 'min:1'],
+            'deadline' => ['date', 'nullable'],
+        ]);
+
+        $order = Order::find($request->order_id);
+        if($order != null):
+            $order->waybill_no = $request->waybill_no;
+            $order->date_issued = $request->date_issued;
+            $order->quantity = $request->quantity;
+            $order->value = $request->value;
+            $order->description = $request->description;
+            $order->customer_name = $request->customer_name;
+            $order->issued_by = $request->issued_by;
+            $order->deadline = $request->deadline;
+
+            $order->update();
+
+            return back()->with([
+                'status'=>'Order has been updated successfully'
+            ]);
+        endif;
     }
 
     function waybillNo($waybill_no){

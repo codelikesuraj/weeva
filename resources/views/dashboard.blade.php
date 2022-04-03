@@ -28,7 +28,7 @@
               </div>
             </div>
             <div class="my-1 p-2" style="background: #eeeeee;">
-              <a href="#" class="text-decoration-none text-body">
+              <a href="{{route('viewOne', [$order->id])}}" class="text-decoration-none text-body">
                 {{$order->quantity.' '.$order->value.' of '.$order->description}}
               </a>
             </div>
