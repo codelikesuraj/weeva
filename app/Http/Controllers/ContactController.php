@@ -43,7 +43,9 @@ class ContactController extends Controller
             'created_by' => Auth::user()->id,
         ]);
 
-        return redirect('/contacts');
+        return back()->with([
+            'status' => ['Contact has been created successfully'],
+        ]);
     }
 
     public function confirm_delete(Contact $contact){

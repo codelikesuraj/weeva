@@ -32,6 +32,16 @@
 				        	<div class="row mx-0">
 				        		<div class="col-8 p-0">
 				        			<div class="col-12 mb-1 mx-0">
+					              <strong>Status:&nbsp;</strong>
+					              @if($order->status == 'pending')
+					              	<span class="bg-warning text-body px-1">
+					             	@else
+					             		<span class="bg-success text-white px-1">
+					             	@endif
+					             		{{ucfirst($order->status)}}
+					             	</span>
+					            </div>
+				        			<div class="col-12 mb-1">
 				        				<strong>No:</strong>
 				        				<a class="text-dark" href="{{route('waybillNo', [$order->waybill_no])}}"> {{$order->waybill_no}}</a>
 				        			</div>

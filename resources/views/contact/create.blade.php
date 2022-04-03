@@ -22,14 +22,19 @@
 				<!-- errors -->
 				<x-sbdash.auth-validation-errors :class="'mb-4 small'" :errors="$errors" />
 
+				<!-- Success messages -->
+				@if (Session::has('status'))
+					<x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />
+				@endif
+
 				<!-- Name -->
 				<div class="mb-3">
-					<input class="form-control" id="name" type="text" placeholder="Name" required autofocus value="{{old('name')}}" name="name" />
+					<input class="form-control" id="name" type="text" placeholder="Name" required  value="{{old('name')}}" name="name" />
 				</div>
 
 				<!-- Phone Number -->
 				<div class="mb-3">
-					<input class="form-control" id="phone" type="text" placeholder="Phone Number" autofocus value="{{old('phone')}}" name="phone"/>
+					<input class="form-control" id="phone" type="text" placeholder="Phone Number"  value="{{old('phone')}}" name="phone"/>
 				</div>
 
 				<!-- Contact Type -->

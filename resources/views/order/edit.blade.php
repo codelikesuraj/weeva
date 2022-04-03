@@ -33,7 +33,7 @@
 				<div class="mb-3 row">
 					<div class="col-12 col-lg-6">
 						<label class="form-label" for="waybill_no">Waybill Number</label>
-						<input id="waybill_no" class="form-control" type="text" name="waybill_no" value="{{$order->waybill_no}}" required autofocus />
+						<input id="waybill_no" class="form-control" type="text" name="waybill_no" value="{{$order->waybill_no}}" required  />
 					</div>
 				</div>
 
@@ -41,12 +41,12 @@
 					<!-- Date Issued -->
 					<div class="mb-3 col-lg-3 col-8">
 						<label class="form-label" for="date_issued">Date Issued</label>
-						<input id="date_issued" class="form-control" type="date" name="date_issued" value="{{$order->date_issued}}" required autofocus />
+						<input id="date_issued" class="form-control" type="date" name="date_issued" value="{{$order->date_issued}}" required  />
 					</div>
 					<!-- Deadline -->
 					<div class="mb-3 col-lg-3 col-8">
 						<label class="form-label" for="deadline">Deadline</label>
-						<input id="deadline" class="form-control" type="date" name="deadline" value="{{$order->deadline}}" autofocus />
+						<input id="deadline" class="form-control" type="date" name="deadline" value="{{$order->deadline}}"  />
 					</div>
 				</div>
 
@@ -54,11 +54,11 @@
 				<div class="row">
 					<div class="mb-3 col-6 col-lg-1">
 						<label class="form-label" for="quantity">Quantity</label>
-						<input id="quantity" class="form-control" type="number" name="quantity" value="{{$order->quantity}}"  required autofocus />
+						<input id="quantity" class="form-control" type="number" name="quantity" value="{{$order->quantity}}"  required  />
 					</div>
 					<div class="mb-3 col-6 col-lg-2">
 						<label class="form-label" for="value">Value</label>
-						<select id="value" class="form-select" name="value" required autofocus>
+						<select id="value" class="form-select" name="value" required >
 							<option value="">--Select--</option>
 							<option value="pcs" {{$order->value == 'pcs' ? 'selected' : ''}}>pcs</option>
 							<option value="sets" {{$order->value == 'sets' ? 'selected' : ''}}>sets</option>
@@ -70,7 +70,7 @@
 				<div class="mb-3 row">
 					<div class="col-12 col-lg-6">
 						<label class="form-label" for="description">Description</label>
-						<textarea id="description" class="form-control" type="text" rows="4" name="description" placeholder="Enter order description here" required autofocus>{{$order->description}}</textarea>
+						<textarea id="description" class="form-control" type="text" rows="4" name="description" placeholder="Enter order description here" required >{{$order->description}}</textarea>
 					</div>
 				</div>
 
@@ -78,7 +78,7 @@
 				<div class="mb-3 row">
 					<div class="col-12 col-lg-6">
 						<label class="form-label" for="customer_name">Customer Name</label>
-						<input id="customer_name" class="form-control" type="text" name="customer_name" value="{{$order->customer_name}}" required autofocus />
+						<input id="customer_name" class="form-control" type="text" name="customer_name" value="{{$order->customer_name}}" required  />
 					</div>
 				</div>
 
@@ -86,7 +86,7 @@
 				<div class="mb-3 row">
 					<div class="col-9 col-lg-4">
 						<label class="form-label" for="issued_by">Issued By</label>
-						<select id="issued_by" class="form-select" name="issued_by" required autofocus>
+						<select id="issued_by" class="form-select" name="issued_by" required >
 							<option value="">-- Issued By --</option>
 							@foreach($contacts as $contact)
 								<option value="{{$contact->id}}" {{$order->issued_by == $contact->id ? 'selected' : ''}}>{{ucwords($contact->name)}}</option>

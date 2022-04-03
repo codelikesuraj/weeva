@@ -46,7 +46,10 @@ class OrderController extends Controller
         ]);
 
         return back()->with([
-            'status'=>'Order has been created successfully'
+            'status' => [
+                'Order has been created successfully',
+                '<a href="'.route('viewOne', [$order->id]).'">Click here to view order</a>',
+            ],
         ]);
     }
 
@@ -83,7 +86,7 @@ class OrderController extends Controller
             $order->update();
 
             return back()->with([
-                'status'=>'Order has been updated successfully'
+                'status'=>['Order has been updated successfully']
             ]);
         endif;
     }

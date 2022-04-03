@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('issued_to', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('contact_id');

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedInteger('owned_by');
             $table->foreign('owned_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('waybill_no')->nullable();
