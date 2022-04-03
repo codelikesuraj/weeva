@@ -17,7 +17,11 @@ class OrderController extends Controller
 
     function create(){
         return view('order.create', [
-            'contacts' => Contact::where('type', '=', 'sales')->orderBy('name')->get()
+            'contacts' => Contact::query()
+                ->where([
+                    ['type', '=', 'sales'],
+                    ['created_by', '=', Auth::user()->id]
+                ])->orderBy('name')->get()
         ]);
     }
 
@@ -56,7 +60,11 @@ class OrderController extends Controller
     function edit(Order $order){
         return view('order.edit')->with([
             'order'=>$order,
-            'contacts' => Contact::where('type', '=', 'sales')->orderBy('name')->get(),
+            'contacts' => Contact::query()
+                ->where([
+                    ['type', '=', 'sales'],
+                    ['created_by', '=', Auth::user()->id]
+                ])->orderBy('name')->get(),
         ]);
     }
 
