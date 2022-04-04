@@ -22,7 +22,7 @@
 
 			<!-- Email Address -->
 			<div class="form-floating mb-3">
-				<input class="form-control" id="email" type="text" placeholder="Email Address" autofocus value="{{old('email')}}" name="email"/>
+				<input class="form-control" id="email" type="text" placeholder="Email Address" required autofocus value="{{old('email')}}" name="email"/>
 				<label for="email">Email Address</label>
 			</div>
 
