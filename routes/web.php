@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
     // orders
     Route::get('/orders/view/{order}', [OrderController::class, 'viewOne'])->name('viewOne');
+    Route::get('/orders/date/{year}/{month}/{day}', [OrderController::class, 'viewByDate'])->name('viewByDate');
     Route::get('/orders', [OrderController::class, 'create'])->name('order');
     Route::post('/orders', [OrderController::class, 'store']);
     Route::get('/orders/waybill_no/{waybill_no}', [OrderController::class, 'waybillNo'])->name('waybillNo');
