@@ -31,9 +31,9 @@
 			      		<div class="col-12 mb-1">
 			      			<strong class="">Status:&nbsp;</strong>
 		              @if($order->status == 'pending')
-		              	<span class="bg-warning text-body px-1">{{ucfirst($order->status)}}</span>
+		              	<span class="bg-warning text-dark px-1">{{ucfirst($order->status)}}</span>
 		             	@else
-		             		<span class="bg-success text-body px-1">{{ucfirst($order->status)}}</span>
+		             		<span class="bg-success text-light px-1">{{ucfirst($order->status)}}</span>
 		             	@endif
 		            </div>
 				        <div class="col-12 mb-1 ">
