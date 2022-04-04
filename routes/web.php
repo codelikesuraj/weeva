@@ -39,13 +39,14 @@ Route::middleware('auth')->group(function () {
 
     // orders
     Route::get('/orders/view/{order}', [OrderController::class, 'viewOne'])->name('viewOne');
-    Route::get('/orders/date/{year}/{month}/{day}', [OrderController::class, 'viewByDate'])->name('viewByDate');
+    Route::get('/orders/date/{year}/{month}/{day}', [OrderController::class, 'viewByDate'])->name('viewOrdersByDate');
     Route::get('/orders', [OrderController::class, 'create'])->name('order');
     Route::post('/orders', [OrderController::class, 'store']);
     Route::get('/orders/waybill_no/{waybill_no}', [OrderController::class, 'waybillNo'])->name('waybillNo');
     Route::get('/orders/issued_by/{issued_by}', [OrderController::class, 'issuedBy'])->name('issuedBy');
     Route::get('/orders/edit/{order}', [OrderController::class, 'edit'])->name('editOrder');
     Route::post('/orders/edit/{order}', [OrderController::class, 'update']);
+    Route::post('/orders/delete', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
 
     // contacts
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
@@ -55,6 +56,11 @@ Route::middleware('auth')->group(function () {
     // Route::post('/contacts/update', [ContactController::class, 'update']);
     Route::get('/contacts/delete/{contact}', [ContactController::class, 'confirm_delete'])->name('confirm-delete-contact');
     Route::post('/contacts/delete', [ContactController::class, 'delete'])->name('delete-contact');
+
+    // deliveries
+    Route::post('/deliveries/create', [DeliveryController::class, 'store'])->name('saveDelivery');
+    Route::post('/deliveries/delete', [DeliveryController::class, 'delete'])->name('deleteDelivery');
+    Route::get('/deliveries/date/{year}/{month}/{day}', [DeliveryController::class, 'viewByDate'])->name('viewDeliveriesByDate');
 
 });
 

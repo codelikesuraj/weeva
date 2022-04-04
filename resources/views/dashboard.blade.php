@@ -5,6 +5,11 @@
 
   <h1 class="m-4 mx-1">Dashboard</h1>
   <div class="card mb-4">
+    <!-- Success messages -->
+    @if (Session::has('status'))
+      <x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />
+    @endif
+    
     <div class="card-header d-flex justify-content-between align-items-center">
       <div>
         <h4 class="fs-4"><i class="fas fa-table me-1"></i>Pending Order</h4>

@@ -99,6 +99,14 @@ class OrderController extends Controller
         endif;
     }
 
+    function deleteOrder(Request $request){
+        $order = Order::find($request->order_id);
+
+        $order->delete();
+
+        return redirect('/dashboard')->with('status', ['Order has been deleted successfully']);
+    }
+
     function waybillNo($waybill_no){
         $orders = Order::where('waybill_no', '=', $waybill_no)->orderBy('status', 'asc')->orderBy('quantity', 'desc')->get();
         if($orders->count()<1):
@@ -119,5 +127,9 @@ class OrderController extends Controller
             'orders' => $orders,
             'issued_by' => $orders[0]->issuedBy->name,
         ]);
+    }
+
+    function viewByDate($month, $year, $date){
+        
     }
 }
