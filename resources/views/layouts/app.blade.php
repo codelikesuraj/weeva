@@ -25,7 +25,7 @@
 		<!-- Navbar Brand-->
 		<a class="navbar-brand ps-2 fs-2 text-light" href="{{route('dashboard')}}">Weeva</a>
 		<!-- Sidebar Toggle-->
-		<button class="border border-gray border-3 rounded-3 btn btn-sm bg-lg-warning mx-0 ms-3" id="sidebarToggle" href="#!">
+		<button class="border border-gray border-3 rounded-3 btn btn-sm bg-lg-warning" id="sidebarToggle" href="#!">
 			<!-- <i class="fas fa-bars"></i> -->
 			<span class="text-light fs-6 p-1">Menu</span>
 		</button>

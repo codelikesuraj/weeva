@@ -16,33 +16,33 @@
 			</h4>
 		</div>
 
-		<div class="card-body p-0">
+		<div class="card-body p-0 fs-6">
 
-			<div class="accordion m-0" id="accordionExample">
+			<div class="accordion m-0 fs-6" id="accordionExample">
 			  <div class="accordion-item">
 			    <h2 class="accordion-header" id="headingOne">
-			      <button class="accordion-button fs-5 text-dark p-2" type="button" data-bs-toggle="collapse" data-bs-target="#orderDetails" aria-expanded="true" aria-controls="orderDetails">
+			      <button class="accordion-button text-dark p-2 fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#orderDetails" aria-expanded="true" aria-controls="orderDetails">
 			        Order Details
 			      </button>
 			    </h2>
 			    <div id="orderDetails" class="fs-6 accordion-collapse collapse show p-0" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 			      <div class="accordion-body p-2 fs-6">
-			      	<div class="row  fs-6">
-			      		<div class="col-12  fs-6">
+			      	<div class="row fs-6">
+			      		<div class="col-12 fs-6">
 				        	<div class="row mx-0  fs-6">
 				        		<div class="col-8 p-0  fs-6">
 				        			<div class="col-12 mb-1 mx-0  fs-6">
 					              <strong class=" fs-6">Status:&nbsp;</strong>
 					              @if($order->status == 'pending')
-					              	<span class="bg-warning text-body px-1  fs-6">
+					              	<span class="bg-warning text-body px-1 fs-6">
 					             	@else
-					             		<span class="bg-success text-body px-1  fs-6">
+					             		<span class="bg-success text-body px-1 fs-6">
 					             	@endif
 					             		{{ucfirst($order->status)}}
 					             	</span>
 					            </div>
 				        			<div class="col-12 mb-1  fs-6">
-				        				<strong class=" fs-6">No:</strong>
+				        				<strong class="fs-6">No:</strong>
 				        				<a class="text-dark" href="{{route('waybillNo', [$order->waybill_no])}}"> {{$order->waybill_no}}</a>
 				        			</div>
 				        			<div class="col-12 mb-1">
@@ -72,7 +72,7 @@
 			  </div>
 			  <div class="accordion-item">
 			    <h2 class="accordion-header" id="headingTwo">
-			      <button class="accordion-button collapsed fs-5 text-dark p-2" type="button" data-bs-toggle="collapse" data-bs-target="#deliveryDetails" aria-expanded="false" aria-controls="deliveryDetails">
+			      <button class="accordion-button collapsed fs-4 text-dark p-2" type="button" data-bs-toggle="collapse" data-bs-target="#deliveryDetails" aria-expanded="false" aria-controls="deliveryDetails">
 			        Delivery Details
 			      </button>
 			    </h2>

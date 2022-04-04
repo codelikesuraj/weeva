@@ -27,11 +27,11 @@
                 <a class="text-dark" href="{{route('issuedBy', [$order->issued_by])}}">{{$order->issuedBy->name}}</a>
               </div>
             </div>
-            <div class="my-1 p-2" style="background: #eeeeee;">
+            <p class="my-1 p-2" style="background: #eeeeee;">
               <a href="{{route('viewOne', [$order->id])}}" class="text-decoration-none text-body">
                 {{$order->quantity.' '.$order->value.' of '.$order->description}}
               </a>
-            </div>
+            </p>
             <div class="d-flex justify-content-end">
               <strong>Customer:&nbsp;</strong>{{ucwords($order->customer_name)}}
             </div>
