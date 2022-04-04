@@ -7,7 +7,9 @@
 		</div>
 
 		<!-- Session Status -->
-    <x-sbdash.auth-session-status class="mb-4" :status="session('status')" />
+    @if (Session::has('status'))
+			<x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />
+		@endif
 
 		<!-- Validation Errors -->
     <x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
