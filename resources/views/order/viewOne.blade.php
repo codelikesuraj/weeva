@@ -28,34 +28,21 @@
 			    <div id="orderDetails" class="accordion-collapse collapse show p-0" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 			      <div class="accordion-body p-2">
 			      	<div class="row">
-			      		<div class="col-12">
-				        	<div class="row mx-0 ">
-				        		<div class="col-8 p-0 ">
-				        			<div class="col-12 mb-1 mx-0 ">
-					              <strong class="">Status:&nbsp;</strong>
-					              @if($order->status == 'pending')
-					              	<span class="bg-warning text-body px-1">
-					             	@else
-					             		<span class="bg-success text-body px-1">
-					             	@endif
-					             		{{ucfirst($order->status)}}
-					             	</span>
-					            </div>
-				        			<div class="col-12 mb-1 ">
-				        				<strong>No:</strong>
-				        				<a class="text-dark" href="{{route('waybillNo', [$order->waybill_no])}}"> {{$order->waybill_no}}</a>
-				        			</div>
-				        			<div class="col-12 mb-1">
-				        				<strong class="">Issued on:</strong> {{date('d-M-Y', strtotime($order->date_issued))}}
-				        			</div>
-				        		</div>
-				        		<div class=" col-4 p-0 d-flex justify-content-end">
-				        			<div>
-				        				<a class="btn btn-success py-1" href="{{route('editOrder', [$order->id])}}">Edit</a>
-				        			</div>
-				        		</div>
-				        	</div>
-					      </div>
+			      		<div class="col-12 mb-1">
+			      			<strong class="">Status:&nbsp;</strong>
+		              @if($order->status == 'pending')
+		              	<span class="bg-warning text-body px-1">{{ucfirst($order->status)}}</span>
+		             	@else
+		             		<span class="bg-success text-body px-1">{{ucfirst($order->status)}}</span>
+		             	@endif
+		            </div>
+				        <div class="col-12 mb-1 ">
+				        	<strong>No:</strong>
+				        	<a class="text-dark" href="{{route('waybillNo', [$order->waybill_no])}}"> {{$order->waybill_no}}</a>
+				        </div>
+				        <div class="col-12 mb-1">
+				        	<strong class="">Issued on:</strong> {{date('d-M-Y', strtotime($order->date_issued))}}
+				        </div>
 			        	<div class="col-12 mb-1"><strong>Description:</strong>
 			        		<div class="my-0 p-2" style="background: #eeeeee;">
 			        			{{$order->quantity.' '.$order->value.' of '.$order->description}}
@@ -64,8 +51,18 @@
 			        	<div class="col-12 mb-1"><strong>Issued By:</strong> 
 			        		<a class="text-dark" href="{{route('issuedBy', [$order->issued_by])}}">{{$order->issuedBy->name}}</a>
 			        	</div>
-			        	<div class="col-12 mb-1"><strong>Customer:</strong> {{$order->customer_name}}</div>
-			        	<div class="col-12 mb-1"><strong>Deadline:</strong> {{$order->deadline != '' ? date('d-M-Y', strtotime($order->deadline)) : 'not specified'}}</div>
+			        	<div class="col-12 mb-1">
+			        		<strong>Customer:</strong> {{$order->customer_name}}
+			        	</div>
+			        	<div class="col-12 mb-1">
+			        		<strong>Deadline:</strong> {{$order->deadline != '' ? date('d-M-Y', strtotime($order->deadline)) : 'not specified'}}
+			        	</div>
+				      </div>
+				      <div class="row mt-1">
+				      	<div class="d-flex justify-content-end">
+				      		<a class="btn btn-outline-danger py-1" href="#">Delete</a>
+				      		<a class="btn btn-success py-1 mx-1" href="{{route('editOrder', [$order->id])}}">Edit</a>
+				      	</div>
 				      </div>
 			      </div>
 			    </div>
