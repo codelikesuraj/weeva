@@ -41,7 +41,7 @@
         <div class="m-1 list-item">
           @if($contact_count < 1)
             <p class="fs-5 text-center">You don't have any <strong>sales</strong> contact saved yet !!!<br/>Click the button below to add one now </p>
-            <div class="d-flex justify-content-center"><a class="m-auto btn btn-info" href="{{route('create-contact')}}">Add Contact</a></div>
+            <div class="d-flex justify-content-center"><a class="m-auto btn btn-info border border-dark border-2 rounded-3" href="{{route('create-contact')}}">Add Contact</a></div>
           @else
             <p>No orders yet !!!</p>
           @endif

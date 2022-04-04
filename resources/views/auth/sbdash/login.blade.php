@@ -32,7 +32,7 @@
 				<!-- Forgot Password -->
 				<div class="col-6 p-0 text-right d-flex justify-content-end">
 						@if(Route::has('password.request'))
-							<a href="{{ route('password.request') }}">Forgot Password?</a>
+							<a class="text-muted" href="{{ route('password.request') }}">Forgot Password?</a>
 						@endif
 				</div>
 			</div>
@@ -45,6 +45,6 @@
 		</form>
 	</div>
 	<div class="card-footer text-center py-3">
-		<div><a href="{{route('register')}}">Need an account? Sign up!</a></div>
+		<div><a class="text-muted" href="{{route('register')}}">Need an account? Sign up!</a></div>
 	</div>
 </x-auth.app>

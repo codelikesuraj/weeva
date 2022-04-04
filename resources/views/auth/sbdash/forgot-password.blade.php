@@ -24,12 +24,12 @@
 			</div>
 
 			<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-				<a class="" href="{{route('login')}}">Return to login</a>
+				<a class="text-muted" href="{{route('login')}}">Return to login</a>
 				<button class="btn btn-primary" type="submit">Reset Password</button>
 			</div>
 		</form>
 	</div>
 	<div class="card-footer text-center py-3">
-		<div class=""><a href="{{route('register')}}">Need an account? Sign up!</a></div>
+		<div><a class="text-muted" href="{{route('register')}}">Need an account? Sign up!</a></div>
 	</div>
 </x-auth.app>
