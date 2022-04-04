@@ -10,8 +10,10 @@
 
 	<title>{{$title}}</title>
 
-	<link href="/assets/css/styles.css" rel="stylesheet" />
+	<link href="/css/app.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="/js/app.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -151,7 +153,5 @@
       </footer>
 		</div>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="/assets/js/scripts.js"></script>
 </body>
 </html>
