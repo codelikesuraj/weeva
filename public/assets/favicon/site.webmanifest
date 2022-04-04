@@ -15,7 +15,7 @@
 	],
 	"theme_color":"#ffffff",
 	"background_color":"#ffffff",
-	"display":"browser",
+	"display":"standalone",
 	"start_url":"/",
 	"description":"Order management software tailored for aso-oke weavers",
 	"orientation":"portrait"
