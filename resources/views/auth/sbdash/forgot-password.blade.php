@@ -30,6 +30,6 @@
 		</form>
 	</div>
 	<div class="card-footer text-center py-3">
-		<div><a class="text-muted" href="{{route('register')}}">Need an account? Sign up!</a></div>
+		<div><a class="text-muted small" href="{{route('register')}}">Need an account? Sign up!</a></div>
 	</div>
 </x-auth.app>
