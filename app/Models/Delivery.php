@@ -17,7 +17,8 @@ class Delivery extends Model
         'quantity', 
         'user_id',
         'order_id',
-        'date_delivered'
+        'date_delivered',
+        'value',
     ];
 
     public function deliveredBy (){

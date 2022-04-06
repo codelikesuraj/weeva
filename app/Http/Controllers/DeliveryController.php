@@ -16,13 +16,15 @@ class DeliveryController extends Controller
             'quantity' => ['required', 'numeric', 'min:1'],
             'order_id' => ['required'],
             'date_delivered' => ['date', 'required'],
+            'value' => ['required'],
         ]);
 
         $delivery = Delivery::create([
             'quantity' => $request->quantity,
             'user_id' => $user_id,
-            'order_id' => $order_id,
-            'date_delivered' => $request->date_delivered,
+            'order_id' => $request->order_id,
+            'date_delivered' => trim($request->date_delivered),
+            'value' => $request->value,
         ]);
 
         return back()->with([
@@ -44,7 +46,15 @@ class DeliveryController extends Controller
         ]);
     }
 
-    function viewByDate($year, $month, $date){
-        //
+    function viewByDate($year, $month, $day){
+        $date = $year.'-'.$month.'-'.$day;
+        $delivery = Delivery::where('date_delivered', '=', $date)->get();
+        if($delivery->count() < 1):
+            abort(404);
+        endif;
+        return view('delivery.date')->with([
+            'deliveries' => $delivery,
+            'date' => $date,
+        ]);
     }
 }

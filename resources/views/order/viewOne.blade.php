@@ -16,6 +16,11 @@
 			</h4>
 		</div>
 
+		<!-- Success messages -->
+		@if (Session::has('status'))
+			<x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />
+		@endif
+
 		<div class="card-body p-0">
 
 			<div class="accordion m-0" id="accordionExample">
@@ -99,7 +104,74 @@
 			    </h2>
 			    <div id="deliveryDetails" class="accordion-collapse collapse p-0" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 			      <div class="accordion-body p-2 text-center">
-			        ⚠ Feature coming soon !!!
+			      	<div class="row">
+			      		<div class="col-12 d-flex justify-content-end">
+			      			<!-- Add delivery button -->
+				      		<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addDelivery">
+									  Add
+									</button>
+									<!-- Add delivery modal -->
+									<div class="modal fade" id="addDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h5 class="modal-title" id="exampleModalLabel">Add delivery</h5>
+									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									      </div>
+									      <div class="modal-body">
+									        <form method="POST" action="{{route('saveDelivery')}}">
+									        	@csrf
+									        	<input type="hidden" name="order_id" value="{{$order->id}}">
+														<div class="row">
+															<!-- Quantity-->
+															<div class="mb-3 col-6 col-lg-1 input-group">
+																<span class="input-group-text"><strong>Quantity</strong></span>
+																<input id="quantity" class="form-control" type="number" name="quantity" required  />
+																<select class="form-select" name="value">
+																	<option>select</option>
+																	<option>pcs</option>
+																	<option>sets</option>
+																</select>
+															</div>
+															<!-- Date delivered -->
+															<div class="mb-3 col-6 col-lg-1 input-group">
+																<span class="input-group-text"><strong>Delivered on</strong></span>
+																<input type="date" name="date_delivered" value="{{date('Y-m-d')}}" />
+															</div>
+														</div>
+														<div class="d-flex justify-content-end">
+															<button type="submit" class="btn btn-success">Save</button>
+														</div>
+									        </form>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+			      		</div>
+			      		@if($deliveries && $deliveries->count()>0)
+			      			@foreach($deliveries as $delivery)
+			      				<hr class="my-2 mx-1">
+					      		<div class="col-12 d-flex justify-content-start">
+					      			{{
+					      				$delivery->quantity.' '
+					      				.$delivery->value.' delivered on'
+					      			}}&nbsp;
+					      			<a href="{{
+					      				route('viewDeliveriesByDate', [
+					      					date('Y', strtotime($delivery->date_delivered)),
+					      					date('m', strtotime($delivery->date_delivered)),
+					      					date('d', strtotime($delivery->date_delivered)),
+					      				])
+					      			}}">
+					      				{{date('D', strtotime($delivery->date_delivered)).', '.date('M-d-Y', strtotime($delivery->date_delivered))}}
+					      			</a>
+					      		</div>
+					      	@endforeach
+				      	@else
+				      		<div class="col-12 d-flex justify-content-center">
+				      			No deliveries yet !!!
+				      		</div>
+				      	@endif
 			      </div>
 			    </div>
 			  </div>
