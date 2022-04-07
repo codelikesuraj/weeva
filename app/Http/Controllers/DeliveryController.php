@@ -36,7 +36,11 @@ class DeliveryController extends Controller
 
     function delete(Request $request){
         $delivery = Delivery::find($request->delivery_id);
-
+        
+        if($delivery == null):
+            return redirect('/dashboard');
+        endif;
+        
         $delivery->delete();
 
         return back()->with([

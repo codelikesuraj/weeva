@@ -110,6 +110,10 @@ class OrderController extends Controller
 
     function deleteOrder(Request $request){
         $order = Order::find($request->order_id);
+        
+        if($order == null):
+            return redirect('/dashboard');
+        endif;
 
         $order->delete();
 
