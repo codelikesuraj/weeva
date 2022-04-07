@@ -148,11 +148,12 @@
 				    {{$slot}}
           </div>
 			</main>
-			<footer class="py-4 bg-light mt-auto">
+			<footer class="py-2 bg-light mt-auto">
         <div class="container-fluid d-flex align-items-center justify-content-center small">
           <div class="row text-center">
             <div class="col-12 text-muted mb-1">Copyright &copy; {{config('app.name', 'Weeva').' '.date('Y')}}</div>
             <div class="col-12 mb-1"> Designed and developed by<br/><a class="text-muted" href="#">Abdulbaki Suraj</a></div>
+            <div class="col-12 mb-1">Made with <a class="text-danger" href="https://laravel.com">Laravel PHP</a></div>
           </div>
         </div>
       </footer>
