@@ -66,10 +66,10 @@
 				      <div class="row mt-1">
 				      	<div class="d-flex justify-content-end">
 				      		<!-- Delete order button -->
-				      		<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteOrder">
+				      		<button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteOrder">
 									  Delete
 									</button>
-				      		<a class="btn btn-success py-1 mx-1" href="{{route('editOrder', [$order->id])}}">Edit</a>
+				      		<a class="btn btn-small btn-success py-1 mx-1" href="{{route('editOrder', [$order->id])}}">Edit</a>
 				      	</div>
 				      	<!-- Delete order modal -->
 				      	<div class="modal fade" id="deleteOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -107,7 +107,7 @@
 			      	<div class="row">
 			      		<div class="col-12 d-flex justify-content-end">
 			      			<!-- Add delivery button -->
-				      		<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addDelivery">
+				      		<button type="button" class="small btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#addDelivery">
 									  Add
 									</button>
 									<!-- Add delivery modal -->
@@ -151,21 +151,47 @@
 			      		@if($deliveries && $deliveries->count()>0)
 			      			@foreach($deliveries as $delivery)
 			      				<hr class="my-2 mx-1">
-					      		<div class="col-12 d-flex justify-content-start">
-					      			{{
-					      				$delivery->quantity.' '
-					      				.$delivery->value.' delivered on'
-					      			}}&nbsp;
-					      			<a href="{{
-					      				route('viewDeliveriesByDate', [
-					      					date('Y', strtotime($delivery->date_delivered)),
-					      					date('m', strtotime($delivery->date_delivered)),
-					      					date('d', strtotime($delivery->date_delivered)),
-					      				])
-					      			}}">
-					      				{{date('D', strtotime($delivery->date_delivered)).', '.date('M-d-Y', strtotime($delivery->date_delivered))}}
-					      			</a>
-					      		</div>
+			      				<div class="col-12 d-flex justify-content-between">
+						      	<div class="small">
+						      			{{
+						      				$delivery->quantity.' '.$delivery->value.' delivered on '.date('l', strtotime($delivery->date_delivered))
+						      			}}<br/>
+						      			<a href="{{
+						      				route('viewDeliveriesByDate', [
+						      					date('Y', strtotime($delivery->date_delivered)),
+						      					date('m', strtotime($delivery->date_delivered)),
+						      					date('d', strtotime($delivery->date_delivered)),
+						      				])
+						      			}}">
+						      				{{date('M-d-Y', strtotime($delivery->date_delivered))}}
+						      			</a>
+						      	</div>
+						      	<div class="">
+						      		<!-- Delete delivery button -->
+				      				<button type="button" class="small btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteDelivery">Delete</button>
+						      		<!-- Delete delivery modal -->
+							      	<div class="modal fade" id="deleteDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h5 class="modal-title" id="exampleModalLabel">Delete delivery</h5>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body">
+											      	<p>Before you continue, know that this action cannot be undone.</p>
+											        <p>Are you still sure you want to delete this delivery?</p>
+											        <form method="post" action="{{route('deleteDelivery')}}">
+											        	@csrf
+											        	<input type="hidden" name="delivery_id" value="{{$delivery->id}}">
+											        	<button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">No</button>
+											        	<button type="submit" class="btn btn-danger">Yes, I am very very sure</button>
+											        </form>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+						      	</div>
+						      </div>
 					      	@endforeach
 				      	@else
 				      		<div class="col-12 d-flex justify-content-center">

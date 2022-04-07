@@ -49,9 +49,7 @@ class DeliveryController extends Controller
     function viewByDate($year, $month, $day){
         $date = $year.'-'.$month.'-'.$day;
         $delivery = Delivery::where('date_delivered', '=', $date)->get();
-        if($delivery->count() < 1):
-            abort(404);
-        endif;
+        
         return view('delivery.date')->with([
             'deliveries' => $delivery,
             'date' => $date,
