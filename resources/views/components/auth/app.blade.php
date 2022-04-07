@@ -35,11 +35,11 @@
       </main>
     </div>
     <div id="layoutAuthentication_footer">
-      <footer class="p-3 bg-light mt-auto">
+      <footer class="p-3 px-1 bg-light mt-auto">
         <div class="container-fluid d-flex align-items-center justify-content-center small">
           <div class="row text-center">
             <div class="col-12 text-muted mb-1">Copyright &copy; {{config('app.name', 'Weeva').' '.date('Y')}}</div>
-            <div class="col-12 mb-1">Designed and developed by<br/><a class="text-muted" href="#">
+            <div class="col-12 mb-1">Designed and developed by <a class="text-muted" href="#">
             Abdulbaki Suraj</a></div>
             <div class="col-12 mb-1">Made with <a class="text-danger" href="https://laravel.com">Laravel PHP</a></div>
           </div>
