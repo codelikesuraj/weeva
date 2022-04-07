@@ -95,8 +95,10 @@
 								        <form method="post" action="{{route('deleteOrder')}}">
 								        	@csrf
 								        	<input type="hidden" name="order_id" value="{{$order->id}}">
-								        	<button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">No</button>
-								        	<button type="submit" class="btn btn-danger">Yes, I am very very sure</button>
+								        	<div class="d-flex justify-content-end">
+								        		<button type="button" class="mx-1 btn btn-outline-success" data-bs-dismiss="modal">No</button>
+								        		<button type="submit" class="btn btn-danger">Yes, I am very very sure</button>
+								        	</div>
 								        </form>
 								      </div>
 								    </div>
@@ -143,17 +145,17 @@
 															<!-- Quantity-->
 															<div class="mb-3 col-6 col-lg-1 input-group">
 																<span class="input-group-text"><strong>Quantity</strong></span>
-																<input id="quantity" class="form-control" type="number" name="quantity" required  />
+																<input id="quantity" class="form-control" type="number" name="quantity" required  value="{{old('quantity')}}"/>
 																<select class="form-select" name="value" required >
-																	<option>select</option>
-																	<option value="pcs">pcs</option>
-																	<option value="sets">sets</option>
+																	<option value="">select</option>
+																	<option value="pcs" {{old('value') == 'pcs' ? 'selected' : ''}}>pcs</option>
+																	<option value="sets" {{old('value') == 'sets' ? 'selected' : ''}}>sets</option>
 																</select>
 															</div>
 															<!-- Date delivered -->
 															<div class="mb-3 col-6 col-lg-1 input-group">
 																<span class="input-group-text"><strong>Delivered on</strong></span>
-																<input type="date" name="date_delivered" value="{{date('Y-m-d')}}" required />
+																<input type="date" name="date_delivered" value="{{old('date_delivered') != '' ? old('date_delivered') : date('Y-m-d')}}" required />
 															</div>
 														</div>
 														<div class="d-flex justify-content-end">
