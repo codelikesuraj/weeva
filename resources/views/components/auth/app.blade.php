@@ -41,7 +41,7 @@
             <div class="col-12 text-muted mb-1">Copyright &copy; {{config('app.name', 'Weeva').' '.date('Y')}}</div>
             <div class="col-12 mb-1">Designed and developed by <a class="text-muted" href="#">
             Abdulbaki Suraj</a></div>
-            <div class="col-12 mb-1">Made with <a class="text-danger" href="https://laravel.com">Laravel PHP</a></div>
+            <div class="col-12 mb-1">Made with <a class="text-danger" target="_blank" href="https://laravel.com">Laravel PHP</a></div>
           </div>
         </div>
       </footer>
