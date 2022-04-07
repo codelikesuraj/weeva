@@ -30,7 +30,17 @@
 			        <h5>Order Details</h5>
 			      </button>
 			    </h2>
-			    <div id="orderDetails" class="accordion-collapse collapse show p-0" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+			    @if($errors->any())
+			    	<div id="orderDetails" class="accordion-collapse collapse p-0" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+						<script>
+					    window.onload = () => {
+					    	var myModal = new bootstrap.Modal(document.getElementById('addDelivery'), {})
+								myModal.show()
+					    }
+						</script>
+			    @else
+			    	<div id="orderDetails" class="accordion-collapse collapse show p-0" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+					@endif
 			      <div class="accordion-body p-2">
 			      	<div class="row">
 			      		<div class="col-12 mb-1">
@@ -102,7 +112,11 @@
 			        <h5>Delivery Details</h5>
 			      </button>
 			    </h2>
-			    <div id="deliveryDetails" class="accordion-collapse collapse p-0" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+			    @if($errors->any())
+			    	<div id="deliveryDetails" class="accordion-collapse collapse show p-0" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+			    @else
+			    	<div id="deliveryDetails" class="accordion-collapse collapse p-0" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+					@endif
 			      <div class="accordion-body p-2 text-center">
 			      	<div class="row">
 			      		<div class="col-12 d-flex justify-content-end">
@@ -119,6 +133,9 @@
 									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									      </div>
 									      <div class="modal-body">
+									      	<!-- Errors -->
+													<x-sbdash.auth-validation-errors :class="'mb-4 small'" :errors="$errors" />
+
 									        <form method="POST" action="{{route('saveDelivery')}}">
 									        	@csrf
 									        	<input type="hidden" name="order_id" value="{{$order->id}}">
@@ -127,16 +144,16 @@
 															<div class="mb-3 col-6 col-lg-1 input-group">
 																<span class="input-group-text"><strong>Quantity</strong></span>
 																<input id="quantity" class="form-control" type="number" name="quantity" required  />
-																<select class="form-select" name="value">
+																<select class="form-select" name="value" required >
 																	<option>select</option>
-																	<option>pcs</option>
-																	<option>sets</option>
+																	<option value="pcs">pcs</option>
+																	<option value="sets">sets</option>
 																</select>
 															</div>
 															<!-- Date delivered -->
 															<div class="mb-3 col-6 col-lg-1 input-group">
 																<span class="input-group-text"><strong>Delivered on</strong></span>
-																<input type="date" name="date_delivered" value="{{date('Y-m-d')}}" />
+																<input type="date" name="date_delivered" value="{{date('Y-m-d')}}" required />
 															</div>
 														</div>
 														<div class="d-flex justify-content-end">

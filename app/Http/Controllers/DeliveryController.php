@@ -16,7 +16,7 @@ class DeliveryController extends Controller
             'quantity' => ['required', 'numeric', 'min:1'],
             'order_id' => ['required'],
             'date_delivered' => ['date', 'required'],
-            'value' => ['required'],
+            'value' => ['required', 'in:pcs,sets'],
         ]);
 
         $delivery = Delivery::create([

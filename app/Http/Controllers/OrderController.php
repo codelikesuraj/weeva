@@ -51,12 +51,19 @@ class OrderController extends Controller
             'deadline' => $request->deadline,
         ]);
 
-        return back()->with([
-            'status' => [
-                'Order has been created successfully',
-                '<a href="'.route('viewOne', [$order->id]).'">Click here to view order</a>',
-            ],
-        ]);
+        $return = back()->with([
+                'status' => [
+                    'Order has been created successfully',
+                    '<a href="'.route('viewOne', [$order->id]).'">Click here to view order</a>',
+                ],
+            ]);
+        
+        if($request->submit == 'copy'):
+            return $return->withInput($request->all());
+        endif;
+
+        return $return;
+
     }
 
     function edit(Order $order){

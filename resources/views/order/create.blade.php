@@ -92,12 +92,11 @@
 						</select>
 					</div>
 				</div>
-
 				
-
 				<!-- Submit -->
 				<div class="mb-3 d-flex justify-content-start">
-					<button type="submit" name="submit" class="btn btn-success">Save order</button>
+					<button type="submit" name="submit" value="save" class="btn btn-success">Save</button>
+					<button type="submit" name="submit" value="copy" class="mx-2 border border-2 btn btn-info">Save and Copy</button>
 				</div>
 			</form>
 		</div>
