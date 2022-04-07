@@ -43,12 +43,12 @@
 	          <div class="d-flex justify-content-end">
 	            <strong>Customer:&nbsp;</strong>{{ucwords($delivery->orderInfo->customer_name)}}
 	          </div>
-	          <div class="d-flex justify-content-end">
+	          <div class="mt-2 mb-1 d-flex justify-content-end">
 	          	<!-- Delete delivery button -->
 	    				<button type="button" class="small btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteDelivery">Delete</button>
 		      		<!-- Delete delivery modal -->
 			      	<div class="modal fade" id="deleteDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog">
+							  <div class="modal-dialog modal-dialog-centered">
 							    <div class="modal-content">
 							      <div class="modal-header">
 							        <h5 class="modal-title" id="exampleModalLabel">Delete delivery</h5>

@@ -73,7 +73,7 @@
 				      	</div>
 				      	<!-- Delete order modal -->
 				      	<div class="modal fade" id="deleteOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog">
+								  <div class="modal-dialog modal-dialog-centered">
 								    <div class="modal-content">
 								      <div class="modal-header">
 								        <h5 class="modal-title" id="exampleModalLabel">Delete order</h5>
@@ -112,7 +112,7 @@
 									</button>
 									<!-- Add delivery modal -->
 									<div class="modal fade" id="addDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									  <div class="modal-dialog">
+									  <div class="modal-dialog modal-dialog-centered">
 									    <div class="modal-content">
 									      <div class="modal-header">
 									        <h5 class="modal-title" id="exampleModalLabel">Add delivery</h5>
@@ -171,7 +171,7 @@
 				      				<button type="button" class="small btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteDelivery">Delete</button>
 						      		<!-- Delete delivery modal -->
 							      	<div class="modal fade" id="deleteDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
+											  <div class="modal-dialog modal-dialog-centered">
 											    <div class="modal-content">
 											      <div class="modal-header">
 											        <h5 class="modal-title" id="exampleModalLabel">Delete delivery</h5>
