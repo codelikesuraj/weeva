@@ -4,7 +4,7 @@
 	</x-slot>
 
 	<h1 class="m-4 mx-1">Delivery date: {{date('D, d-M-Y', strtotime($date))}}</h1>
-	<a href="{{route('dashboard')}}" class="m-2 btn btn-outline-danger">Go back to dashboard</a>
+	<a href="{{route('viewDeliveryDates')}}" class="m-2 btn btn-outline-danger">Go back to deliveries</a>
 
 	<div class="card mb-4">
 		<div class="card-header">

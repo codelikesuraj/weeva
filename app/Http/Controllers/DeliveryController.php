@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class DeliveryController extends Controller
 {
+    function viewDeliveryDates(){
+        $user_id = Auth::user()->id;
+        $deliveries = Delivery::query()
+            ->select('date_delivered')
+            ->where('user_id', '=', $user_id)
+            ->distinct()
+            ->orderBy('date_delivered', 'desc')
+            ->get();
+        
+        return view('delivery.listDeliveryDates')->with([
+            'deliveries' => $deliveries
+        ]);
+    }
+
     function store(Request $request){
         $user_id = Auth::user()->id;
         $request->validate([

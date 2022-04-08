@@ -81,6 +81,11 @@
 								</a>
 							</nav>
 						</div>
+						<!-- Delivery -->
+						<a class="nav-link" href="{{route('viewDeliveryDates')}}" >
+							<div class="sb-nav-link-icon"><i class=""></i></div>
+							Deliveries
+						</a>
 
 						<!-- Section -->
 						<div class="sb-sidenav-menu-heading">Account</div>

@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/contacts/delete', [ContactController::class, 'delete'])->name('delete-contact');
 
     // deliveries
+    Route::get('/deliveries', [DeliveryController::class, 'viewDeliveryDates'])->name('viewDeliveryDates');
     Route::post('/deliveries/create', [DeliveryController::class, 'store'])->name('saveDelivery');
     Route::post('/deliveries/delete', [DeliveryController::class, 'delete'])->name('deleteDelivery');
     Route::get('/deliveries/date/{year}/{month}/{day}', [DeliveryController::class, 'viewByDate'])->name('viewDeliveriesByDate');
