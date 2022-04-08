@@ -1,6 +1,6 @@
 <x-app-layout>
 	<x-slot name="title">
-		Delivery date: {{date('d-m-y', strtotime($date))}}
+		Delivery date: {{date('j-M-y', strtotime($date))}}
 	</x-slot>
 
 	<h1 class="m-4 mx-1">Delivery date: {{date('D, d-M-Y', strtotime($date))}}</h1>
@@ -10,8 +10,8 @@
 		<div class="card-header">
 			<h4 class="d-flex justify-content-between align-items-center">
 				<div>
-					<i class="fas fa-user me-1"></i>
-					Deliveries
+					<i class="fas fa-truck me-1"></i>
+					Deliveries ({{$deliveries->count()>0 ? $deliveries->count() : '0'}})
 				</div>
 			</h4>
 		</div>

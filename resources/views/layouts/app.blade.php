@@ -16,7 +16,7 @@
 	<title>{{$title}}</title>
 
 	<link href="/css/app.css" rel="stylesheet" />
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="/js/app.js"></script>
 </head>
@@ -27,7 +27,7 @@
 		<!-- Sidebar Toggle-->
 		<button class="border border-gray border-3 rounded-3 btn btn-sm bg-lg-warning" id="sidebarToggle" href="#!">
 			<!-- <i class="fas fa-bars"></i> -->
-			<span class="text-light fs-6 p-1">Menu</span>
+			<span class="text-light fs-6 p-1"><i class="fas fa-bars"></i> Menu</span>
 		</button>
 	</nav>
 	<div id="layoutSidenav">
@@ -83,7 +83,7 @@
 						</div>
 						<!-- Delivery -->
 						<a class="nav-link" href="{{route('viewDeliveryDates')}}" >
-							<div class="sb-nav-link-icon"><i class=""></i></div>
+							<div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
 							Deliveries
 						</a>
 

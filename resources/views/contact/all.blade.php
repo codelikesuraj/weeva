@@ -4,15 +4,13 @@
 	</x-slot>
 
 	<h1 class="m-4 mx-1">Contacts</h1>
-	<ol class="breadcrumb mb-4">
-		<li class="breadcrumb-item active">Contacts</li>
-	</ol>
+	<a href="{{route('dashboard')}}" class="m-2 btn btn-outline-danger">Go back to dashboard</a>
 
 	<div class="card mb-4">
 		<div class="card-header">
 			<h4 class="d-flex justify-content-between align-items-center">
 				<div>
-					<i class="fas fa-table me-1"></i>
+					<i class="fas fa-user me-1"></i>
 					Contacts
 				</div>
 				<div>
@@ -21,42 +19,48 @@
 				</div>
 			</h4>
 		</div>
-		<div class="card-body">
-			<table id="datatablesSimple">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Name</th>
-						<th>Phone</th>
-						<th>Type</th>
-						<th colspan="2">Action</th>
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<th>#</th>
-						<th>Name</th>
-						<th>Phone</th>
-						<th>Type</th>
-						<th colspan="2">Action</th>
-					</tr>
-				</tfoot>
-				<tbody>
-					@if($contacts && $contacts->count()>=1)
-					@foreach($contacts as $contact)
-					<tr>
-						<td>{{$loop->iteration}}</td>
-						<td>{{$contact->name}}</td>
-						<td>{{$contact->phone ? $contact->phone : 'n/a'}}</td>
-						<td>{{ucfirst($contact->type)}}</td>
-						<td><a href="{{route('confirm-delete-contact', [$contact->id])}}">Delete</a></td>
-					</tr>
-					@endforeach
-					@else
-					<tr><td colspan="6">Wow! such empty</td></tr>
-					@endif
-				</tbody>
-			</table>
+		<div class="card-body p-0 m-0">
+			<div class="table-responsive">
+				<table class="text-center table table-bordered border-dark table-striped table-responsive table-sm align-middle">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Phone</th>
+							<th>Type</th>
+							<th colspan="2">Action</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Phone</th>
+							<th>Type</th>
+							<th colspan="2">Action</th>
+						</tr>
+					</tfoot>
+					<tbody>
+						@if($contacts && $contacts->count()>=1)
+						@foreach($contacts as $contact)
+						<tr>
+							<td>{{$loop->iteration}}</td>
+							<td>{{$contact->name}}</td>
+							<td>{{$contact->phone ? $contact->phone : 'n/a'}}</td>
+							<td>{{ucfirst($contact->type)}}</td>
+							<td>
+								<a href="{{route('confirm-delete-contact', [$contact->id])}}">
+									<i class="small fas fa-trash text-danger"></i>
+								</a>
+							</td>
+						</tr>
+						@endforeach
+						@else
+						<tr><td colspan="6">Wow! such empty</td></tr>
+						@endif
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </x-app-layout>

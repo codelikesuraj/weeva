@@ -12,7 +12,7 @@
     
     <div class="card-header d-flex justify-content-between align-items-center">
       <div>
-        <h4 class="fs-4"><i class="fas fa-table me-1"></i>Pending Orders ({{$orders->count()>0 ? $orders->count() : '0'}})</h4>
+        <h4 class="fs-4"><i class="fas fa-shopping-cart me-1"></i>Pending Orders ({{$orders->count()>0 ? $orders->count() : '0'}})</h4>
       </div>
       <div>
         <a href="{{route('order')}}" class="btn btn-success p-1 px-2 ">Add</a>

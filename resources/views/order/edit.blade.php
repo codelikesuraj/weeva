@@ -10,7 +10,7 @@
 		<div class="card-header">
 			<h4 class="d-flex justify-content-between align-items-center">
 				<div>
-					<i class="fas fa-shopping-cart me-1"></i>
+					<i class="fas fa-pencil-alt me-1"></i>
 					Edit Order
 				</div>
 			</h4>

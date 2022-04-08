@@ -10,8 +10,10 @@ class ContactController extends Controller
 {
     public function index() {
         return view('contact.all', [
-            'contacts' => Contact::latest()
-            ->where('created_by', '=', Auth::user()->id)->get()
+            'contacts' => Contact::query()
+                ->where('created_by', '=', Auth::user()->id)
+                ->orderBy('name', 'asc')
+                ->get()
         ]);
     }
 

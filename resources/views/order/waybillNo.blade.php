@@ -10,15 +10,15 @@
 		<div class="card-header">
 			<h4 class="d-flex justify-content-between align-items-center">
 				<div>
-					<i class="fas fa-user me-1"></i>
-					Order(s)
+					<i class="fas fa-shopping-cart me-1"></i>
+					Orders ({{$orders->count()}})
 				</div>
 			</h4>
 		</div>
 
 		<div class="card-body p-1">
       @foreach($orders as $order)
-        <div class="mx-1 px-1 mt-2 list-item">
+        <div class="mx-1 px-1 mt-2 small">
           <div class="d-flex justify-content-between">
           	<div>
               <strong>Status:&nbsp;</strong>

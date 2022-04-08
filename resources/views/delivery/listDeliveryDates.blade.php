@@ -10,7 +10,7 @@
 		<div class="card-header">
 			<h4 class="d-flex justify-content-between align-items-center">
 				<div>
-					<i class="fas fa-user me-1"></i>
+					<i class="fas fa-truck me-1"></i>
 					Deliveries
 				</div>
 			</h4>

@@ -3,14 +3,14 @@
 		Contacts | Create
 	</x-slot>
 
-	<h1 class="m-4 mx-1">Contacts > Create</h1>
+	<h1 class="m-4 mx-1">Contacts</h1>
 	<a href="{{route('contacts')}}" class="mb-2 btn btn-danger">Go back to contacts</a>
 
 	<div class="card mb-4">
 		<div class="card-header">
 			<h4 class="d-flex justify-content-between align-items-center">
 				<div>
-					<i class="fas fa-user me-1"></i>
+					<i class="fas fa-plus me-1"></i>
 					Create Contact
 				</div>
 			</h4>
