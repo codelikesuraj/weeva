@@ -54,11 +54,16 @@
 										<i class="fas fa-plus"></i>
 									</div>Add new order
 								</a>
-								<!-- <a class="nav-link" href="{{route('contacts')}}">
+								<a class="nav-link" href="#">
 									<div class="sb-nav-link-icon">
 										<i class="fas fa-hourglass"></i>
-									</div>View pending orders
-								</a> -->
+									</div>Pending orders
+								</a>
+								<a class="nav-link" href="#">
+									<div class="sb-nav-link-icon">
+										<i class="fas fa-check"></i>
+									</div>Completed orders
+								</a>
 							</nav>
 						</div>
 						<!-- Contacts -->
