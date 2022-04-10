@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/edit/{order}', [OrderController::class, 'edit'])->name('editOrder');
     Route::post('/orders/edit/{order}', [OrderController::class, 'update']);
     Route::post('/orders/delete', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
+    Route::get('/orders/pending', [OrderController::class, 'getPendingOrders'])->name('pendingOrders');
+    Route::get('/orders/completed', [OrderController::class, 'getCompletedOrders'])->name('completedOrders');
 
     // contacts
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');

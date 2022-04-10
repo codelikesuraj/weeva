@@ -17,6 +17,52 @@ class OrderController extends Controller
         ]);
     }
 
+    function getPendingOrders(){
+        $user_id = Auth::user()->id;
+
+        $orders = Order::query()
+            ->where([
+                ['owned_by', '=', $user_id],
+                ['status', '=', 'pending']
+            ])
+            ->orderBy('waybill_no', 'desc')
+            ->get();
+        
+        $contact_count = Contact::where([
+            ['created_by', '=', $user_id],
+            ['type', '=', 'sales'],
+        ])->count();
+        
+        return view('order.pending', [
+            'orders' => $orders,
+            'contact_count' => $contact_count,
+        ]);
+    }
+
+    function getCompletedOrders(){
+        $user_id = Auth::user()->id;
+
+        $orders = Order::query()
+            ->where([
+                ['owned_by', '=', $user_id],
+                ['status', '=', 'complete']
+            ])
+            ->orderBy('waybill_no', 'desc')
+            ->get();
+
+        $contact_count = Contact::query()
+            ->where([
+                ['created_by', '=', $user_id],
+                ['type', '=', 'sales'],
+            ])
+            ->count();
+
+        return view('order.completed', [
+            'orders' => $orders,
+            'contact_count' => $contact_count,
+        ]);
+    }
+
     function create(){
         return view('order.create', [
             'contacts' => Contact::query()

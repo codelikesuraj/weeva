@@ -1,9 +1,9 @@
 <x-app-layout>
   <x-slot name="title">
-    Dashboard
+    Completed Orders
   </x-slot>
 
-  <h1 class="m-4 mx-1">Dashboard</h1>
+  <h1 class="m-4 mx-1">Completed orders</h1>
   <div class="card mb-4">
     <!-- Success messages -->
     @if (Session::has('status'))
@@ -12,7 +12,7 @@
     
     <div class="card-header d-flex justify-content-between align-items-center">
       <div>
-        <h4 class="fs-4"><i class="fas fa-shopping-cart me-1"></i>Pending Orders ({{$orders->count()>0 ? $orders->count() : '0'}})</h4>
+        <h4 class="fs-4"><i class="fas fa-check me-1"></i>Completed Orders ({{$orders->count()>0 ? $orders->count() : '0'}})</h4>
       </div>
       <div>
         <a href="{{route('order')}}" class="btn btn-success p-1 px-2 small">Add</a>
@@ -28,7 +28,7 @@
               <p class="text-center">You don't have any <strong>sales</strong> contact saved yet !!!<br/>Click the button below to add one now </p>
               <div class="d-flex justify-content-center"><a class="m-auto btn btn-info border border-dark border-2 rounded-3" href="{{route('create-contact')}}">Add Contact</a></div>
             @else
-              <p>No orders yet !!!</p>
+              <p>No completed orders yet !!!</p>
             @endif
           </div>
         @endif
