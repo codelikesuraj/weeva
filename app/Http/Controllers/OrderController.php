@@ -17,6 +17,33 @@ class OrderController extends Controller
         ]);
     }
 
+    function changeStatus(Request $request){
+        $order = Order::find($request->order_id);
+        $order_status = strtolower(trim($request->current_status));
+
+        switch ($order_status) {
+            case 'complete':
+                $order->status = 'pending';
+                break;
+            
+            case 'pending':
+                $order->status = 'complete';
+                break;
+            
+            default:
+                abort(404);
+                break;
+        }
+
+        $order->update();
+
+        return back()->with([
+            'status' => [
+                'Order has been marked as complete',
+            ],
+        ]);
+    }
+
     function getPendingOrders(){
         $user_id = Auth::user()->id;
 

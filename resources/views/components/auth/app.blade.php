@@ -8,15 +8,15 @@
   <meta name="author" content="Weeva" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
-  <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/favicon/apple-touch-icon.png')}}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/favicon/favicon-32x32.png')}}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/favicon/favicon-16x16.png')}}" />
+  <link rel="manifest" href="{{asset('assets/favicon/site.webmanifest')}}" />  
 
   <title>{{$title}}</title>
   
-  <link href="/css/app.css" rel="stylesheet" />
-  <script src="/js/app.js"></script>
+  <link href="{{asset('css/app.css')}}" rel="stylesheet" />
+  <script src="{{asset('js/app.js')}}"></script>
 </head>
 
 <body class="bg-light">

@@ -23,6 +23,12 @@
 
 		<div class="card-body p-0">
 
+			<x-changeOrderStatus 
+				:quantityOrdered="$order->quantity" 
+				:quantitySupplied="$deliveries->pluck('quantity')->sum()"
+				:currentStatus="$order->status"
+				:orderId="$order->id" />
+
 			<div class="accordion m-0" id="accordionExample">
 			  <div class="accordion-item">
 			    <h2 class="accordion-header" id="headingOne">
@@ -121,7 +127,10 @@
 					@endif
 			      <div class="accordion-body p-2 text-center">
 			      	<div class="row">
-			      		<div class="col-12 d-flex justify-content-end">
+			      		<div class="col-12 d-flex align-items-center justify-content-between">
+			      			<div class="ms-0">
+			      				<strong>Total delivered:</strong> {{$deliveries->pluck('quantity')->sum().' '.strtolower($order->value)}}
+			      			</div>
 			      			<!-- Add delivery button -->
 				      		<button type="button" class="small btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#addDelivery">
 									  Add

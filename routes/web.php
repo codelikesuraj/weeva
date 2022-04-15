@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/orders/delete', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
     Route::get('/orders/pending', [OrderController::class, 'getPendingOrders'])->name('pendingOrders');
     Route::get('/orders/completed', [OrderController::class, 'getCompletedOrders'])->name('completedOrders');
+    Route::post('/orders/changeStatus', [OrderController::class, 'changeStatus'])->name('changeOrderStatus');
 
     // contacts
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
