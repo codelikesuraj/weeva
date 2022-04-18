@@ -28,7 +28,7 @@
 							<th>Name</th>
 							<th>Phone</th>
 							<th>Type</th>
-							<th colspan="2">Action</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tfoot>
@@ -37,7 +37,7 @@
 							<th>Name</th>
 							<th>Phone</th>
 							<th>Type</th>
-							<th colspan="2">Action</th>
+							<th>Action</th>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -49,8 +49,8 @@
 							<td>{{$contact->phone ? $contact->phone : 'n/a'}}</td>
 							<td>{{ucfirst($contact->type)}}</td>
 							<td>
-								<a href="{{route('confirm-delete-contact', [$contact->id])}}">
-									<i class="small fas fa-trash text-danger"></i>
+								<a class="text-danger text-decoration-none" href="{{route('edit-contact', [$contact->id])}}">
+									<i class="small fas fa-pencil-alt"></i> Edit
 								</a>
 							</td>
 						</tr>

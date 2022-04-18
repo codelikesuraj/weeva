@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -23,7 +24,7 @@ class ContactController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name' => ['required', 'string', 'min:3'],
+            'name' => ['required', 'string', 'min:3', 'unique:contacts'],
             'phone' => ['nullable'],
             'type' => ['required'],
         ]);
@@ -50,35 +51,57 @@ class ContactController extends Controller
         ]);
     }
 
-    public function confirm_delete(Contact $contact){
-        return view('contact.confirm_delete', [
-            'contact' => $contact
-        ]);
-    }
 
-    public function delete(Request $request){
-        $contact = Contact::find($request->contact_id);
-        if($contact):
-            $contact->delete();
-        endif;
-        
-        return redirect('/contacts');
-    }
-
-    // public function edit(Contact $contact){
-    //     return view('contact.edit', [
+    /*************************************************
+     * This deletes any contact,
+     * don't worry it works already.
+     * I just don't want the
+     * feature to be available
+    */
+    // public function confirm_delete(Contact $contact){
+    //     return view('contact.confirm_delete', [
     //         'contact' => $contact
     //     ]);
     // }
 
-    // public function update(Request $request){
-    //     $request->validate([
-    //         'name' => ['required', 'string', 'min:3', 'unique:contacts'],
-    //         'phone' => ['min:11', 'unique:contacts'],
-    //         'type' => ['required'],
-    //     ]);
+    // public function delete(Request $request){
+    //     $contact = Contact::find($request->contact_id);
+    //     if($contact):
+    //         $contact->delete();
+    //     endif;
+        
     //     return redirect('/contacts');
     // }
+
+    public function edit(Contact $contact){
+        if(!$contact){abort(404);}
+
+        return view('contact.edit', [
+            'contact' => $contact
+        ]);
+    }
+
+    public function update(Request $request){
+        $contact = Contact::find($request->contact_id);
+
+        if(!$contact){abort(404);}
+        
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'unique:contacts,name,'.$contact->id],
+            'phone' => ['nullable'],
+            'type' => ['required', 'in:weaver,sales'],
+        ]);
+
+        $contact->name = $request->name;
+        $contact->phone = $request->phone;
+        $contact->type = $request->type;
+
+        $contact->update();
+
+        return back()->with([
+            'status' => ['Contact has been updated successfully'],
+        ]);
+    }
 
     
 }

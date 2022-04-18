@@ -56,10 +56,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
     Route::get('/contacts/create', [ContactController::class, 'create'])->name('create-contact');
     Route::post('/contacts/create', [ContactController::class, 'store'])->name('store-contact');
-    // Route::get('/contacts/update/{contact}', [ContactController::class, 'edit'])->name('edit-contact');
-    // Route::post('/contacts/update', [ContactController::class, 'update']);
-    Route::get('/contacts/delete/{contact}', [ContactController::class, 'confirm_delete'])->name('confirm-delete-contact');
-    Route::post('/contacts/delete', [ContactController::class, 'delete'])->name('delete-contact');
+    Route::get('/contacts/edit/{contact}', [ContactController::class, 'edit'])->name('edit-contact');
+    Route::post('/contacts/update', [ContactController::class, 'update'])->name('update-contact');
+    // Route::get('/contacts/delete/{contact}', [ContactController::class, 'confirm_delete'])->name('confirm-delete-contact');
+    // Route::post('/contacts/delete', [ContactController::class, 'delete'])->name('delete-contact');
 
     // deliveries
     Route::get('/deliveries', [DeliveryController::class, 'viewDeliveryDates'])->name('viewDeliveryDates');
