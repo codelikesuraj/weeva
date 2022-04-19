@@ -8,12 +8,14 @@
 
 	<div class="card mb-4">
 		<div class="card-header">
-			<h4 class="d-flex justify-content-between align-items-center">
-				<div>
-					<i class="fas fa-plus me-1"></i>
+			<div class="d-flex justify-content-start align-items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+				  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+				</svg>
+				<h4 class="ms-1">
 					Create Order
-				</div>
-			</h4>
+				</h4>
+			</div>
 		</div>
 
 		<div class="card-body p-4">

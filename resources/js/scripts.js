@@ -3,9 +3,15 @@
     * Copyright 2013-2021 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
     */
-    // 
+
+/*!
+ * I am leaving this here in order to give credit to the original
+ * author and more importantly I am not a fan of PLAGIARISM.
+ * Codelikesuraj is grateful to this template.
+ * P.S: I might have removed some original content and/or added mine
+ */
+
 // Scripts
-// 
 
 window.addEventListener('DOMContentLoaded', event => {
 
