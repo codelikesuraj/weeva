@@ -39,7 +39,7 @@
         <div class="container-fluid d-flex align-items-center justify-content-center small">
           <div class="row text-center">
             <div class="col-12 text-muted mb-1">Copyright &copy; {{config('app.name', 'Weeva').' '.date('Y')}}</div>
-            <div class="col-12 mb-1">Designed and developed by <a class="text-muted" href="#">
+            <div class="col-12 mb-1">Designed and developed by <a class="text-muted" href="https://github.com/codelikesuraj">
             Abdulbaki Suraj</a></div>
             <div class="col-12 mb-1">Made with <a class="text-danger" target="_blank" href="https://laravel.com">Laravel PHP</a></div>
           </div>
