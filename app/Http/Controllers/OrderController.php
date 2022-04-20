@@ -102,7 +102,7 @@ class OrderController extends Controller
 
     function store(Request $request){
         $request->validate([
-            'waybill_no' => ['required'],
+            'waybill_no' => ['nullable', 'min:2'],
             'date_issued' => ['required', 'date'],
             'quantity' => ['required', 'numeric', 'min:1'],
             'value' => ['required', 'string', 'min:3', 'max:4'],
