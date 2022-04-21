@@ -35,7 +35,7 @@
 				<div class="mb-3 row">
 					<div class="col-12 col-lg-6">
 						<label class="form-label" for="waybill_no">Waybill Number</label>
-						<input id="waybill_no" class="form-control" type="text" name="waybill_no" value="{{$order->waybill_no}}" required  />
+						<input id="waybill_no" class="form-control" type="text" name="waybill_no" value="{{$order->waybill_no}}"/>
 					</div>
 				</div>
 
@@ -80,7 +80,7 @@
 				<div class="mb-3 row">
 					<div class="col-12 col-lg-6">
 						<label class="form-label" for="customer_name">Customer Name</label>
-						<input id="customer_name" class="form-control" type="text" name="customer_name" value="{{$order->customer_name}}" required  />
+						<input id="customer_name" class="form-control" type="text" name="customer_name" value="{{$order->customer_name}}"/>
 					</div>
 				</div>
 

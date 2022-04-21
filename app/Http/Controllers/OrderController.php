@@ -102,24 +102,35 @@ class OrderController extends Controller
 
     function store(Request $request){
         $request->validate([
-            'waybill_no' => ['nullable', 'min:2'],
+            'waybill_no' => ['nullable', 'string', 'max:20'],
             'date_issued' => ['required', 'date'],
             'quantity' => ['required', 'numeric', 'min:1'],
             'value' => ['required', 'string', 'min:3', 'max:4'],
-            'description' => ['required', 'string', 'min:5'],
-            'customer_name' => ['required', 'string', 'min:2'],
+            'description' => ['required', 'string', 'min:5', 'max:70'],
+            'customer_name' => ['nullable', 'string', 'max:50'],
             'issued_by' => ['required', 'numeric', 'min:1'],
             'deadline' => ['date', 'nullable'],
         ]);
 
+        $issued_by_name = Contact::find($request->issued_by)->name;
+        $issued_by = strtolower($issued_by_name);
+        $issued_by = trim($issued_by);
+        $issued_by = str_ireplace(' ', '_', $issued_by);
+
+        $waybill_no = trim($request->waybill_no);
+        $customer_name = trim($request->customer_name);
+
+        $waybill_no = is_null($request->waybill_no) || empty($request->waybill_no) ? $issued_by : $request->waybill_no;
+        $customer_name = is_null($request->customer_name) || empty($request->customer_name) ? $issued_by_name : $request->customer_name;
+
         $order = Order::create([
             'owned_by' => Auth::user()->id,
-            'waybill_no' => $request->waybill_no,
+            'waybill_no' => $waybill_no,
             'date_issued' => $request->date_issued,
             'quantity' => $request->quantity,
             'value' => $request->value,
             'description' => $request->description,
-            'customer_name' => $request->customer_name,
+            'customer_name' => ucwords($customer_name),
             'issued_by' => $request->issued_by,
             'deadline' => $request->deadline,
         ]);
@@ -152,24 +163,36 @@ class OrderController extends Controller
 
     function update(Request $request){
         $request->validate([
-            'waybill_no' => ['required'],
+            'waybill_no' => ['nullable', 'string', 'max:20'],
             'date_issued' => ['required', 'date'],
             'quantity' => ['required', 'numeric', 'min:1'],
             'value' => ['required', 'string', 'min:3', 'max:4'],
-            'description' => ['required', 'string', 'min:5'],
-            'customer_name' => ['required', 'string', 'min:2'],
+            'description' => ['required', 'string', 'min:5', 'max:70'],
+            'customer_name' => ['nullable', 'string', 'max:50'],
             'issued_by' => ['required', 'numeric', 'min:1'],
             'deadline' => ['date', 'nullable'],
         ]);
+        
+        $issued_by_name = Contact::find($request->issued_by)->name;
+        $issued_by = strtolower($issued_by_name);
+        $issued_by = trim($issued_by);
+        $issued_by = str_ireplace(' ', '_', $issued_by);
+
+        $waybill_no = trim($request->waybill_no);
+        $customer_name = trim($request->customer_name);
+
+        $waybill_no = is_null($request->waybill_no) || empty($request->waybill_no) ? $issued_by : $request->waybill_no;
+        $customer_name = is_null($request->customer_name) || empty($request->customer_name) ? $issued_by_name : $request->customer_name;
 
         $order = Order::find($request->order_id);
-        if($order != null):
-            $order->waybill_no = $request->waybill_no;
+
+        if(!is_null($order)):
+            $order->waybill_no = $waybill_no;
             $order->date_issued = $request->date_issued;
             $order->quantity = $request->quantity;
             $order->value = $request->value;
             $order->description = $request->description;
-            $order->customer_name = $request->customer_name;
+            $order->customer_name = $customer_name;
             $order->issued_by = $request->issued_by;
             $order->deadline = $request->deadline;
 
@@ -182,9 +205,10 @@ class OrderController extends Controller
     }
 
     function deleteOrder(Request $request){
+
         $order = Order::find($request->order_id);
-        
-        if($order == null):
+
+        if(is_null($order)):
             return redirect('/dashboard');
         endif;
 

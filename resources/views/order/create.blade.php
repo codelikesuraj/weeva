@@ -78,7 +78,7 @@
 				<div class="mb-3 row">
 					<div class="col-12 col-lg-6">
 						<label class="form-label" for="customer_name">Customer Name</label>
-						<input id="customer_name" class="form-control" type="text" name="customer_name" value="{{old('customer_name')}}" required  />
+						<input id="customer_name" class="form-control" type="text" name="customer_name" value="{{old('customer_name')}}"/>
 					</div>
 				</div>
 
