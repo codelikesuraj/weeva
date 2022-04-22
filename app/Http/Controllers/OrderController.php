@@ -11,9 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     function viewOne(Order $order){
+
+        // echo 'Number of orders requested = '.$order->quantity;
+        // echo '<br/>Number of orders supplied = '.$order->deliveries->pluck('quantity');
+        // dd();
+
         return view('order.viewOne')->with([
             'order'=>$order,
-            'deliveries' => Delivery::where('order_id', '=', $order->id)->orderBy('date_delivered', 'desc')->get(),
+            'deliveries' => $order->deliveries,
         ]);
     }
 

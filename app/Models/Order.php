@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $with = ['issuedBy', 'ownedBy'];
+    protected $with = ['deliveries', 'issuedBy', 'ownedBy'];
 
     protected $fillable = [
         'owned_by',
@@ -32,5 +32,10 @@ class Order extends Model
     public function issuedBy ()
     {
         return $this->belongsTo(Contact::class, 'issued_by');
+    }
+
+    public function deliveries ()
+    {
+        return $this->hasMany(Delivery::class, 'order_id')->without('orderInfo')->orderBy('date_delivered', 'desc');
     }
 }
