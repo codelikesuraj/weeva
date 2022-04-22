@@ -25,20 +25,10 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     // dashboard
-    Route::get('/dashboard', function () {
-        $user_id = Auth::user()->id;
-        $orders = Order::where('owned_by', '=', $user_id)->orderBy('waybill_no', 'desc')->get();
-        $contact_count = Contact::where([
-            ['created_by', '=', $user_id],
-            ['type', '=', 'sales'],
-        ])->count();
-        return view('dashboard', [
-            'orders' => $orders,
-            'contact_count' => $contact_count,
-        ]);
-    })->name('dashboard');
+    Route::get('/dashboard', [OrderController::class, 'getAllOrders'])->name('dashboard');
 
     // orders
+    Route::get('/orders/view/all', [OrderController::class, 'getAllOrders'])->name('allOrders');
     Route::get('/orders/view/{order}', [OrderController::class, 'viewOne'])->name('viewOne');
     Route::get('/orders/date/{year}/{month}/{day}', [OrderController::class, 'viewByDate'])->name('viewOrdersByDate');
     Route::get('/orders', [OrderController::class, 'create'])->name('order');

@@ -17,8 +17,24 @@
 				{{$order->quantity.' '.$order->value.' of '.$order->description}}
 			</a>
 		</p>
-		<div class="d-flex justify-content-end">
-			<strong>Customer:</strong>&nbsp;{{ucwords($order->customer_name)}}
+		<div class="d-flex justify-content-between">
+			<div>
+				@if(request()->routeIs('dashboard') || request()->routeIs('allOrders'))
+          <strong>Status:&nbsp;</strong>
+          @if($order->status == 'pending')
+          	<span class="bg-warning text-body px-1">
+          		<a class="text-body" href="{{route('pendingOrders')}}">{{ucfirst($order->status)}}</a>
+         		</span>
+         	@else
+         		<span class="bg-success text-white px-1">
+         			<a class="text-white" href="{{route('completedOrders')}}">{{ucfirst($order->status)}}</a>
+         		</span>
+         	@endif
+        @endif
+			</div>
+			<div>
+				<strong>Customer:</strong>&nbsp;{{ucwords($order->customer_name)}}
+			</div>
 		</div>
 		<hr class="m-1 mb-2">
 	</div>

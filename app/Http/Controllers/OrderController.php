@@ -66,6 +66,25 @@ class OrderController extends Controller
         ]);
     }
 
+    function getAllOrders(){
+        $user_id = Auth::user()->id;
+
+        $orders=Order::query()
+            ->where('owned_by', '=', $user_id)
+            ->orderBy('waybill_no', 'desc')
+            ->get();
+
+        $contact_count = Contact::where([
+            ['created_by', '=', $user_id],
+            ['type', '=', 'sales'],
+        ])->count();
+        
+        return view('dashboard', [
+            'orders' => $orders,
+            'contact_count' => $contact_count,
+        ]);
+    }
+
     function getCompletedOrders(){
         $user_id = Auth::user()->id;
 
