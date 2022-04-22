@@ -41,6 +41,8 @@ class DeliveryController extends Controller
             'value' => $request->value,
         ]);
 
+        $this->updateOrderStatus($request->order_id);
+
         return back()->with([
             'status' => [
                 'Delivery has been saved successfully',
@@ -54,8 +56,12 @@ class DeliveryController extends Controller
         if($delivery == null):
             return redirect('/dashboard');
         endif;
-        
+            
+        $order_id = $delivery->order_id;
+
         $delivery->delete();
+
+        $this->updateOrderStatus($order_id);
 
         return back()->with([
             'status' => [
@@ -73,5 +79,28 @@ class DeliveryController extends Controller
             'deliveries' => $delivery,
             'date' => $date,
         ]);
+    }
+
+    function updateOrderStatus($order)
+    {
+        $order = Order::find($order);
+
+        $quantity_ordered = $order->quantity;
+        $quantity_supplied = $order->deliveries->pluck('quantity')->sum();
+
+        echo 'Ordered :'.$quantity_ordered;
+        echo '<br>';
+        echo 'Supplied: '.$quantity_supplied;
+        if($quantity_supplied >= $quantity_ordered):
+            if($order->status == 'pending'):
+                $order->status = 'complete';
+                $order->update();
+            endif;
+        else:
+            if($order->status == 'complete'):
+                $order->status = 'pending';
+                $order->update();
+            endif;
+        endif;
     }
 }
