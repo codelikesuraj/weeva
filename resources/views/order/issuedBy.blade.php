@@ -19,33 +19,7 @@
 		</div>
 
 		<div class="card-body p-1">
-      @foreach($orders as $order)
-        <div class="mx-1 px-1 mt-2 small">
-          <div class="d-flex justify-content-between">
-          	<div>
-              <strong>Status:&nbsp;</strong>
-              @if($order->status == 'pending')
-              	<span class="bg-warning text-body px-1">
-             	@else
-             		<span class="bg-success text-white px-1">
-             	@endif
-             		{{ucfirst($order->status)}}</span>
-            </div>
-            <div>
-            	<strong>No:&nbsp;</strong>
-               <a class="text-dark" href="{{route('waybillNo', [$order->waybill_no])}}">{{$order->waybill_no}}</a>
-            </div>
-          </div>
-          <div class="my-1 p-2" style="background: #eeeeee;">
-            <a href="{{route('viewOne', [$order->id])}}" class="text-decoration-none text-body">
-              {{$order->quantity.' '.$order->value.' of '.$order->description}}
-            </a>
-          </div>
-          <div class="d-flex justify-content-end">
-            <strong>Customer:&nbsp;</strong>{{ucwords($order->customer_name)}}
-          </div>
-        </div><hr class="my-3">
-      @endforeach
+      <x-orderList :orders="$orders" />
 		</div>
 	</div>
 </x-app-layout>
