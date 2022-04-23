@@ -23,7 +23,7 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group( function () {
     // dashboard
     Route::get('/dashboard', [OrderController::class, 'getAllOrders'])->name('dashboard');
 
