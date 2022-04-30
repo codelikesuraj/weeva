@@ -10,19 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    function viewOne(Order $order){
-
-        // echo 'Number of orders requested = '.$order->quantity;
-        // echo '<br/>Number of orders supplied = '.$order->deliveries->pluck('quantity');
-        // dd();
-
+    public function viewOne(Order $order){
         return view('order.viewOne')->with([
             'order'=>$order,
             'deliveries' => $order->deliveries,
         ]);
     }
 
-    function changeStatus(Request $request){
+    public function changeStatus(Request $request){
         $order = Order::find($request->order_id);
         $order_status = strtolower(trim($request->current_status));
 
@@ -49,7 +44,7 @@ class OrderController extends Controller
         ]);
     }
 
-    function getPendingOrders(){
+    public function getPendingOrders(){
         $user_id = Auth::user()->id;
 
         $orders = Order::query()
@@ -71,7 +66,7 @@ class OrderController extends Controller
         ]);
     }
 
-    function getAllOrders(){
+    public function getAllOrders(){
         $user_id = Auth::user()->id;
 
         $orders=Order::query()
@@ -90,7 +85,7 @@ class OrderController extends Controller
         ]);
     }
 
-    function getCompletedOrders(){
+    public function getCompletedOrders(){
         $user_id = Auth::user()->id;
 
         $orders = Order::query()
@@ -114,7 +109,7 @@ class OrderController extends Controller
         ]);
     }
 
-    function create(){
+    public function create(){
         return view('order.create', [
             'contacts' => Contact::query()
                 ->where([
@@ -124,7 +119,7 @@ class OrderController extends Controller
         ]);
     }
 
-    function store(Request $request){
+    public function store(Request $request){
         $request->validate([
             'waybill_no' => ['nullable', 'string', 'max:20'],
             'date_issued' => ['required', 'date'],
@@ -174,7 +169,7 @@ class OrderController extends Controller
 
     }
 
-    function edit(Order $order){
+    public function edit(Order $order){
         return view('order.edit')->with([
             'order'=>$order,
             'contacts' => Contact::query()
@@ -185,7 +180,7 @@ class OrderController extends Controller
         ]);
     }
 
-    function update(Request $request){
+    public function update(Request $request){
         $request->validate([
             'waybill_no' => ['nullable', 'string', 'max:20'],
             'date_issued' => ['required', 'date'],
@@ -228,7 +223,7 @@ class OrderController extends Controller
         endif;
     }
 
-    function deleteOrder(Request $request){
+    public function deleteOrder(Request $request){
 
         $order = Order::find($request->order_id);
 
@@ -241,7 +236,7 @@ class OrderController extends Controller
         return redirect('/dashboard')->with('status', ['Order has been deleted successfully']);
     }
 
-    function waybillNo($waybill_no){
+    public function waybillNo($waybill_no){
         $orders = Order::where('waybill_no', '=', $waybill_no)->orderBy('status', 'asc')->orderBy('quantity', 'desc')->get();
         if($orders->count()<1):
             abort(404);
@@ -252,7 +247,7 @@ class OrderController extends Controller
         ]);
     }
 
-    function issuedBy($issued_by){
+    public function issuedBy($issued_by){
         $orders = Order::where('issued_by', '=', $issued_by)->orderBy('status', 'asc')->orderBy('quantity', 'desc')->get();
         if($orders->count()<1):
             abort(404);
@@ -263,7 +258,7 @@ class OrderController extends Controller
         ]);
     }
 
-    function viewByDate($month, $year, $date){
+    public function viewByDate($month, $year, $date){
         
     }
 }

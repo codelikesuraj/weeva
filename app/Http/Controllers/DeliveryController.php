@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DeliveryController extends Controller
 {
-    function viewDeliveryDates(){
+    public function viewDeliveryDates(){
         $user_id = Auth::user()->id;
         $deliveries = Delivery::query()
             ->select('date_delivered')
@@ -24,7 +24,7 @@ class DeliveryController extends Controller
         ]);
     }
 
-    function store(Request $request){
+    public function store(Request $request){
         $user_id = Auth::user()->id;
         $request->validate([
             'quantity' => ['required', 'numeric', 'min:1'],
@@ -50,7 +50,7 @@ class DeliveryController extends Controller
         ]);
     }
 
-    function delete(Request $request){
+    public function delete(Request $request){
         $delivery = Delivery::find($request->delivery_id);
         
         if($delivery == null):
@@ -70,7 +70,7 @@ class DeliveryController extends Controller
         ]);
     }
 
-    function viewByDate($year, $month, $day){
+    public function viewByDate($year, $month, $day){
         $date = $year.'-'.$month.'-'.$day;
         
         $delivery = Delivery::where('date_delivered', '=', $date)->get();
@@ -81,7 +81,7 @@ class DeliveryController extends Controller
         ]);
     }
 
-    function updateOrderStatus($order)
+    public function updateOrderStatus($order)
     {
         $order = Order::find($order);
 
