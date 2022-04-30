@@ -2,17 +2,15 @@
 	<x-slot name="title">Forgot Password</x-slot>
 	<div class="card-header"><h3 class="text-center font-weight-light my-4">Password Recovery</h3></div>
 	<div class="card-body">
-
 		<!-- Validation Errors -->
-    <x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
+    	<x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
 
 		<form method="POST" action="{{ route('password.update') }}">
-      @csrf
+      		@csrf
+      		<!-- Password Reset Token -->
+      		<input type="hidden" name="token" value="{{$request->route('token')}}">
 
-      <!-- Password Reset Token -->
-      <input type="hidden" name="token" value="{{$request->route('token')}}">
-
-      <!-- Email Address -->
+      		<!-- Email Address -->
 			<div class="form-floating mb-3">
 				<input class="form-control" id="email" type="email" placeholder="name@example.com" name="email" value="{{old('email', $request->email)}}" required autofocus/>
 				<label for="email">Email address</label>

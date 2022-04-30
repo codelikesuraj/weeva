@@ -20,16 +20,16 @@
 		<div class="d-flex justify-content-between">
 			<div>
 				@if(request()->routeIs('dashboard', 'allOrders', 'pendingOrders', 'completedOrders', 'waybillNo', 'issuedBy'))
-          @if($order->status == 'pending')
-          	<span class="bg-warning text-body px-1">
-          		<a class="text-body" href="{{route('pendingOrders')}}">{{ucfirst($order->status)}}</a>
-         		</span>
-         	@else
-         		<span class="bg-success text-white px-1">
-         			<a class="text-white" href="{{route('completedOrders')}}">{{ucfirst($order->status)}}</a>
-         		</span>
-         	@endif
-        @endif
+          			@if($order->status == 'pending')
+          				<span class="bg-warning text-body px-1">
+          					<a class="text-body" href="{{route('pendingOrders')}}">{{ucfirst($order->status)}}</a>
+         				</span>
+         			@else
+         				<span class="bg-success text-white px-1">
+	         				<a class="text-white" href="{{route('completedOrders')}}">{{ucfirst($order->status)}}</a>
+         				</span>
+         			@endif
+        		@endif
 			</div>
 			<div>
 				<strong>Customer:</strong>&nbsp;{{ucwords($order->customer_name)}}

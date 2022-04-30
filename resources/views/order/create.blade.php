@@ -1,7 +1,5 @@
 <x-app-layout>
-	<x-slot name="title">
-		Orders | Create
-	</x-slot>
+	<x-slot name="title">Orders | Create</x-slot>
 
 	<h1 class="m-4 mx-1">Orders</h1>
 	<a href="{{route('dashboard')}}" class="m-2 btn btn-outline-danger">Go back to dashboard</a>
@@ -9,12 +7,7 @@
 	<div class="card mb-4">
 		<div class="card-header">
 			<div class="d-flex justify-content-start align-items-center">
-				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-				  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-				</svg>
-				<h4 class="ms-1">
-					Create Order
-				</h4>
+				<h4 class="ms-1">Create Order</h4>
 			</div>
 		</div>
 

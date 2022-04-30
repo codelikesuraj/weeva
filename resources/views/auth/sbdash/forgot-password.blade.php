@@ -7,17 +7,17 @@
 		</div>
 
 		<!-- Session Status -->
-    @if (Session::has('status'))
+    	@if (Session::has('status'))
 			<x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />
 		@endif
 
 		<!-- Validation Errors -->
-    <x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
+    	<x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
 
 		<form method="POST" action="{{ route('password.email') }}">
-      @csrf
+      		@csrf
 
-      <!-- Email Address -->
+      		<!-- Email Address -->
 			<div class="form-floating mb-3">
 				<input class="form-control" id="email" type="email" placeholder="name@example.com" name="email" value="{{old('email')}}" required autofocus/>
 				<label for="email">Email address</label>
@@ -29,6 +29,7 @@
 			</div>
 		</form>
 	</div>
+	
 	<div class="card-footer text-center py-3">
 		<div><a class="text-muted small" href="{{route('register')}}">Need an account? Sign up!</a></div>
 	</div>

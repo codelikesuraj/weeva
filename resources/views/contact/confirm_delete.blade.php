@@ -18,6 +18,5 @@
 			<input type="submit" name="submit" value="Yes, I am sure">
 		</form>
 	</p>
-
 </body>
 </html>

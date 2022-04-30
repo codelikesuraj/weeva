@@ -4,7 +4,7 @@
 	<div class="card-body">
 		
 		<!-- Validation Errors -->
-    <x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
+    	<x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
     
 		<form method="POST" action="{{ route('register') }}">
 			@csrf

@@ -3,17 +3,17 @@
 	<div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
 	<div class="card-body">
 		<!-- Session Status -->
-    <x-sbdash.auth-session-status class="mb-4" :status="session('status')" />
+    	<x-sbdash.auth-session-status class="mb-4" :status="session('status')" />
 
 		<!-- Validation Errors -->
-    <x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
+    	<x-sbdash.auth-validation-errors class="mb-4" :errors="$errors" />
 
 		<form method="POST" action="{{ route('login') }}" autocomplete="off">
 			@csrf
 
 			<!-- Phone Number -->
 			<div class="form-floating mb-3">
-				<input class="form-control" id="phone" type="text" name="phone" placeholder="Phone Number" value="{{old('phone')}}" />
+				<input class="form-control" id="phone" type="text" name="phone" placeholder="Phone Number" value="{{old('phone')}}"/>
 				<label for="phone">Phone Number</label>
 			</div>
 
@@ -31,9 +31,9 @@
 				</div>
 				<!-- Forgot Password -->
 				<div class="col-6 p-0 text-right d-flex justify-content-end">
-						@if(Route::has('password.request'))
-							<a class="text-muted" href="{{ route('password.request') }}">Forgot Password?</a>
-						@endif
+					@if(Route::has('password.request'))
+						<a class="text-muted" href="{{ route('password.request') }}">Forgot Password?</a>
+					@endif
 				</div>
 			</div>
 
