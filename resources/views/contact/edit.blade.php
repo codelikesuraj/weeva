@@ -27,16 +27,16 @@
 				@endif
 
 				<!-- Contact ID -->
-				<input type="hidden" name="contact_id" value="{{old('contact_id') != null ? old('contact_id') : $contact->id}}">
+				<input type="hidden" name="contact_id" value="{{!is_null(old('contact_id')) ? old('contact_id') : $contact->id}}">
 				
 				<!-- Name -->
 				<div class="mb-3">
-					<input class="form-control" id="name" type="text" name="name" value="{{old('name') != null ? old('name') : $contact->name}}" placeholder="Name" required />
+					<input class="form-control" id="name" type="text" name="name" value="{{!is_null(old('name')) ? old('name') : $contact->name}}" placeholder="Name" required />
 				</div>
 
 				<!-- Phone Number -->
 				<div class="mb-3">
-					<input class="form-control" id="phone" type="text" name="phone" value="{{old('phone') != null ? old('phone') : $contact->phone}}" placeholder="Phone Number"/>
+					<input class="form-control" id="phone" type="text" name="phone" value="{{!is_null(old('phone')) ? old('phone') : $contact->phone}}" placeholder="Phone Number"/>
 				</div>
 
 				<!-- Contact Type -->

@@ -12,7 +12,7 @@
 		</div>
 
 		<div class="card-body p-1">
-			@if($deliveries != null && $deliveries->count() > 0)
+			@if(!is_null($deliveries) && $deliveries->count() > 0)
 	      		@foreach($deliveries as $delivery)
 	        		<a class="text-dark text-decoration-none" href="{{route('viewDeliveriesByDate', [date('Y', strtotime($delivery->date_delivered)), date('m', strtotime($delivery->date_delivered)), date('d', strtotime($delivery->date_delivered))])}}">
       					<div class="mx-1 px-1 mt-2 text-center">

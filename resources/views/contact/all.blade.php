@@ -41,21 +41,21 @@
 					</tfoot>
 					<tbody>
 						@if($contacts && $contacts->count()>=1)
-						@foreach($contacts as $contact)
-						<tr>
-							<td>{{$loop->iteration}}</td>
-							<td>{{$contact->name}}</td>
-							<td>{{$contact->phone ? $contact->phone : 'n/a'}}</td>
-							<td>{{ucfirst($contact->type)}}</td>
-							<td>
-								<a class="py-1 btn btn-outline-danger text-decoration-none" href="{{route('edit-contact', [$contact->id])}}">
-									<span class="px-0">Edit</span>
-								</a>
-							</td>
-						</tr>
-						@endforeach
+							@foreach($contacts as $contact)
+							<tr>
+								<td>{{$loop->iteration}}</td>
+								<td>{{$contact->name}}</td>
+								<td>{{$contact->phone ? $contact->phone : 'n/a'}}</td>
+								<td>{{ucfirst($contact->type)}}</td>
+								<td>
+									<a class="py-1 btn btn-outline-danger text-decoration-none" href="{{route('edit-contact', [$contact->id])}}">
+										<span class="px-0">Edit</span>
+									</a>
+								</td>
+							</tr>
+							@endforeach
 						@else
-						<tr><td colspan="6">Wow! such empty</td></tr>
+							<tr><td colspan="6">Wow! such empty</td></tr>
 						@endif
 					</tbody>
 				</table>
