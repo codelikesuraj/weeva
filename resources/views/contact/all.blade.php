@@ -44,7 +44,9 @@
 							@foreach($contacts as $contact)
 							<tr>
 								<td>{{$loop->iteration}}</td>
-								<td>{{$contact->name}}</td>
+								<td>
+									<a class="text-dark" href="{{route('issuedBy', [$contact->id])}}">{{$contact->name}}</a>
+								</td>
 								<td>{{$contact->phone ? $contact->phone : 'n/a'}}</td>
 								<td>{{ucfirst($contact->type)}}</td>
 								<td>
