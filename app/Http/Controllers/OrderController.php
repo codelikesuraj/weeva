@@ -18,7 +18,10 @@ class OrderController extends Controller
     }
 
     public function changeStatus(Request $request){
-        $order = Order::find($request->order_id);
+        $order = Order::where([
+            ['id', '=', $request->order_id],
+            ['owned_by', '=', Auth::id()]
+        ])->first();
         $order_status = strtolower(trim($request->current_status));
 
         switch ($order_status) {
@@ -237,10 +240,17 @@ class OrderController extends Controller
     }
 
     public function waybillNo($waybill_no){
-        $orders = Order::where('waybill_no', '=', $waybill_no)->orderBy('status', 'asc')->orderBy('quantity', 'desc')->get();
+        $orders = Order::where([
+            ['waybill_no', '=', $waybill_no],
+            ['owned_by', '=', Auth::id()]
+        ])->orderBy('status', 'asc')
+        ->orderBy('quantity', 'desc')
+        ->get();
+        
         if($orders->count()<1):
             abort(404);
         endif;
+        
         return view('order.waybillNo')->with([
             'orders' => $orders,
             'waybill_no' => $orders[0]->waybill_no,
@@ -248,10 +258,17 @@ class OrderController extends Controller
     }
 
     public function issuedBy($issued_by){
-        $orders = Order::where('issued_by', '=', $issued_by)->orderBy('status', 'asc')->orderBy('quantity', 'desc')->get();
+        $orders = Order::where([
+            ['issued_by', '=', $issued_by],
+            ['owned_by', '=', Auth::id()]
+        ])->orderBy('status', 'asc')
+        ->orderBy('quantity', 'desc')
+        ->get();
+        
         if($orders->count()<1):
             abort(404);
         endif;
+        
         return view('order.issuedBy')->with([
             'orders' => $orders,
             'issued_by' => $orders[0]->issuedBy->name,
@@ -259,6 +276,6 @@ class OrderController extends Controller
     }
 
     public function viewByDate($month, $year, $date){
-        
+        //
     }
 }

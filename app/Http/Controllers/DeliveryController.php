@@ -51,9 +51,12 @@ class DeliveryController extends Controller
     }
 
     public function delete(Request $request){
-        $delivery = Delivery::find($request->delivery_id);
+        $delivery = Delivery::where([
+            ['id', '=', $request->delivery_id],
+            ['user_id', '=', Auth::id()]
+        ])->first();
         
-        if($delivery == null):
+        if(is_null($delivery)):
             return redirect('/dashboard');
         endif;
             
@@ -73,7 +76,10 @@ class DeliveryController extends Controller
     public function viewByDate($year, $month, $day){
         $date = $year.'-'.$month.'-'.$day;
         
-        $delivery = Delivery::where('date_delivered', '=', $date)->get();
+        $delivery = Delivery::where([
+            ['date_delivered', '=', $date],
+            ['user_id', '=', Auth::id()]
+        ])->get();
         
         return view('delivery.date')->with([
             'deliveries' => $delivery,
