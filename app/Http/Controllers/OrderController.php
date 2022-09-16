@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Order;
-use App\Models\Delivery;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function viewOne(Order $order){
+    public function viewOne(Order $order)
+    {
         return view('order.viewOne')->with([
-            'order'=>$order,
+            'order' => $order,
             'deliveries' => $order->deliveries,
         ]);
     }
 
-    public function changeStatus(Request $request){
+    public function changeStatus(Request $request)
+    {
         $order = Order::where([
             ['id', '=', $request->order_id],
             ['owned_by', '=', Auth::id()]
@@ -28,11 +29,11 @@ class OrderController extends Controller
             case 'complete':
                 $order->status = 'pending';
                 break;
-            
+
             case 'pending':
                 $order->status = 'complete';
                 break;
-            
+
             default:
                 abort(404);
                 break;
@@ -47,7 +48,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function getPendingOrders(){
+    public function getPendingOrders()
+    {
         $user_id = Auth::user()->id;
 
         $orders = Order::query()
@@ -57,22 +59,23 @@ class OrderController extends Controller
             ])
             ->orderBy('waybill_no', 'desc')
             ->get();
-        
+
         $contact_count = Contact::where([
             ['created_by', '=', $user_id],
             ['type', '=', 'sales'],
         ])->count();
-        
+
         return view('order.pending', [
             'orders' => $orders,
             'contact_count' => $contact_count,
         ]);
     }
 
-    public function getAllOrders(){
+    public function getAllOrders()
+    {
         $user_id = Auth::user()->id;
 
-        $orders=Order::query()
+        $orders = Order::query()
             ->where('owned_by', '=', $user_id)
             ->orderBy('waybill_no', 'desc')
             ->get();
@@ -81,14 +84,15 @@ class OrderController extends Controller
             ['created_by', '=', $user_id],
             ['type', '=', 'sales'],
         ])->count();
-        
+
         return view('dashboard', [
             'orders' => $orders,
             'contact_count' => $contact_count,
         ]);
     }
 
-    public function getCompletedOrders(){
+    public function getCompletedOrders()
+    {
         $user_id = Auth::user()->id;
 
         $orders = Order::query()
@@ -112,7 +116,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('order.create', [
             'contacts' => Contact::query()
                 ->where([
@@ -122,7 +127,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'waybill_no' => ['nullable', 'string', 'max:20'],
             'date_issued' => ['required', 'date'],
@@ -158,23 +164,23 @@ class OrderController extends Controller
         ]);
 
         $return = back()->with([
-                'status' => [
-                    'Order has been created successfully',
-                    '<a href="'.route('viewOne', [$order->id]).'">Click here to view order</a>',
-                ],
-            ]);
-        
-        if($request->submit == 'copy'):
+            'status' => [
+                'Order has been created successfully',
+                '<a href="' . route('order.show', [$order->id]) . '">Click here to view order</a>',
+            ],
+        ]);
+
+        if ($request->submit == 'copy') :
             return $return->withInput($request->all());
         endif;
 
         return $return;
-
     }
 
-    public function edit(Order $order){
+    public function edit(Order $order)
+    {
         return view('order.edit')->with([
-            'order'=>$order,
+            'order' => $order,
             'contacts' => Contact::query()
                 ->where([
                     ['type', '=', 'sales'],
@@ -183,7 +189,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $request->validate([
             'waybill_no' => ['nullable', 'string', 'max:20'],
             'date_issued' => ['required', 'date'],
@@ -194,7 +201,7 @@ class OrderController extends Controller
             'issued_by' => ['required', 'numeric', 'min:1'],
             'deadline' => ['date', 'nullable'],
         ]);
-        
+
         $issued_by_name = Contact::find($request->issued_by)->name;
         $issued_by = strtolower($issued_by_name);
         $issued_by = trim($issued_by);
@@ -208,7 +215,7 @@ class OrderController extends Controller
 
         $order = Order::find($request->order_id);
 
-        if(!is_null($order)):
+        if (!is_null($order)) :
             $order->waybill_no = $waybill_no;
             $order->date_issued = $request->date_issued;
             $order->quantity = $request->quantity;
@@ -221,16 +228,17 @@ class OrderController extends Controller
             $order->update();
 
             return back()->with([
-                'status'=>['Order has been updated successfully']
+                'status' => ['Order has been updated successfully']
             ]);
         endif;
     }
 
-    public function deleteOrder(Request $request){
+    public function deleteOrder(Request $request)
+    {
 
         $order = Order::find($request->order_id);
 
-        if(is_null($order)):
+        if (is_null($order)) :
             return redirect('/dashboard');
         endif;
 
@@ -239,43 +247,46 @@ class OrderController extends Controller
         return redirect('/dashboard')->with('status', ['Order has been deleted successfully']);
     }
 
-    public function waybillNo($waybill_no){
+    public function waybillNo($waybill_no)
+    {
         $orders = Order::where([
             ['waybill_no', '=', $waybill_no],
             ['owned_by', '=', Auth::id()]
         ])->orderBy('status', 'asc')
-        ->orderBy('quantity', 'desc')
-        ->get();
-        
-        if($orders->count()<1):
+            ->orderBy('quantity', 'desc')
+            ->get();
+
+        if ($orders->count() < 1) :
             abort(404);
         endif;
-        
+
         return view('order.waybillNo')->with([
             'orders' => $orders,
             'waybill_no' => $orders[0]->waybill_no,
         ]);
     }
 
-    public function issuedBy($issued_by){
+    public function issuedBy($issued_by)
+    {
         $orders = Order::where([
             ['issued_by', '=', $issued_by],
             ['owned_by', '=', Auth::id()]
         ])->orderBy('status', 'asc')
-        ->orderBy('quantity', 'desc')
-        ->get();
-        
-        if($orders->count()<1):
+            ->orderBy('quantity', 'desc')
+            ->get();
+
+        if ($orders->count() < 1) :
             abort(404);
         endif;
-        
+
         return view('order.issuedBy')->with([
             'orders' => $orders,
             'issued_by' => $orders[0]->issuedBy->name,
         ]);
     }
 
-    public function viewByDate($month, $year, $date){
+    public function viewByDate($month, $year, $date)
+    {
         //
     }
 }

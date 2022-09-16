@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Delivery;
 use Illuminate\Support\Facades\Auth;
 
 class DeliveryController extends Controller
 {
-    public function viewDeliveryDates(){
+    public function viewDeliveryDates()
+    {
         $user_id = Auth::user()->id;
         $deliveries = Delivery::query()
             ->select('date_delivered')
@@ -18,13 +18,14 @@ class DeliveryController extends Controller
             ->distinct()
             ->orderBy('date_delivered', 'desc')
             ->get();
-        
+
         return view('delivery.listDeliveryDates')->with([
             'deliveries' => $deliveries
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $user_id = Auth::user()->id;
         $request->validate([
             'quantity' => ['required', 'numeric', 'min:1'],
@@ -50,16 +51,17 @@ class DeliveryController extends Controller
         ]);
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $delivery = Delivery::where([
             ['id', '=', $request->delivery_id],
             ['user_id', '=', Auth::id()]
         ])->first();
-        
-        if(is_null($delivery)):
+
+        if (is_null($delivery)) :
             return redirect('/dashboard');
         endif;
-            
+
         $order_id = $delivery->order_id;
 
         $delivery->delete();
@@ -73,14 +75,15 @@ class DeliveryController extends Controller
         ]);
     }
 
-    public function viewByDate($year, $month, $day){
-        $date = $year.'-'.$month.'-'.$day;
-        
+    public function viewByDate($year, $month, $day)
+    {
+        $date = $year . '-' . $month . '-' . $day;
+
         $delivery = Delivery::where([
             ['date_delivered', '=', $date],
             ['user_id', '=', Auth::id()]
         ])->get();
-        
+
         return view('delivery.date')->with([
             'deliveries' => $delivery,
             'date' => $date,
@@ -94,16 +97,16 @@ class DeliveryController extends Controller
         $quantity_ordered = $order->quantity;
         $quantity_supplied = $order->deliveries->pluck('quantity')->sum();
 
-        echo 'Ordered :'.$quantity_ordered;
+        echo 'Ordered :' . $quantity_ordered;
         echo '<br>';
-        echo 'Supplied: '.$quantity_supplied;
-        if($quantity_supplied >= $quantity_ordered):
-            if($order->status == 'pending'):
+        echo 'Supplied: ' . $quantity_supplied;
+        if ($quantity_supplied >= $quantity_ordered) :
+            if ($order->status == 'pending') :
                 $order->status = 'complete';
                 $order->update();
             endif;
-        else:
-            if($order->status == 'complete'):
+        else :
+            if ($order->status == 'complete') :
                 $order->status = 'pending';
                 $order->update();
             endif;
