@@ -89,6 +89,13 @@
                             </nav>
                         </div>
 
+                        <!-- Delivery -->
+                        <a class="nav-link" href="{{ route('viewDeliveryDates') }}">
+                            <div class="sb-nav-link-icon">
+                            </div>
+                            Deliveries
+                        </a>
+
                         <!-- Contacts -->
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#contactsMenu" aria-expanded="false" aria-controls="collapseLayouts">
@@ -116,13 +123,6 @@
                                 </a>
                             </nav>
                         </div>
-
-                        <!-- Delivery -->
-                        <a class="nav-link" href="{{ route('viewDeliveryDates') }}">
-                            <div class="sb-nav-link-icon">
-                            </div>
-                            Deliveries
-                        </a>
 
                         <!-- Section -->
                         <div class="sb-sidenav-menu-heading">Account</div>
