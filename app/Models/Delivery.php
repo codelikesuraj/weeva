@@ -9,23 +9,26 @@ class Delivery extends Model
 {
     use HasFactory;
 
-    protected $with = ['deliveredBy', 'orderInfo'];
-
     protected $table = 'deliveries';
-
+    protected $with = [
+        'deliveredBy',
+        'orderInfo'
+    ];
     protected $fillable = [
-        'quantity', 
+        'quantity',
         'user_id',
         'order_id',
         'date_delivered',
         'value',
     ];
 
-    public function deliveredBy (){
+    public function deliveredBy()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function orderInfo (){
+    public function orderInfo()
+    {
         return $this->belongsTo(Order::class, 'order_id');
     }
 }

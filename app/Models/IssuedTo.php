@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IssuedTo extends Model
 {
     use HasFactory;
+    
     protected $table = 'issued_to';
-
     protected $fillable = [
         'order_id',
         'contact_id',

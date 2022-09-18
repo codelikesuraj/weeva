@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('contact.all', [
             'contacts' => Contact::query()
                 ->where('created_by', '=', Auth::user()->id)
@@ -17,25 +18,27 @@ class ContactController extends Controller
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('contact.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => ['required', 'string', 'min:3', 'unique:contacts'],
             'phone' => ['nullable'],
             'type' => ['required'],
         ]);
-        
-        if(Contact::where([
-            ['name','=',$request->name],
+
+        if (Contact::where([
+            ['name', '=', $request->name],
             ['created_by', '=', Auth::user()->id]
-        ])->count()):
+        ])->count()) :
             return redirect()
-            ->back()
-            ->withErrors(['name already exists'])
-            ->withInput();
+                ->back()
+                ->withErrors(['name already exists'])
+                ->withInput();
         endif;
 
         $contact = Contact::create([
@@ -56,7 +59,7 @@ class ContactController extends Controller
      * don't worry it works already.
      * I just don't want the
      * feature to be available
-    */
+     */
     // public function confirm_delete(Contact $contact){
     //     return view('contact.confirm_delete', [
     //         'contact' => $contact
@@ -68,25 +71,31 @@ class ContactController extends Controller
     //     if($contact):
     //         $contact->delete();
     //     endif;
-        
+
     //     return redirect('/contacts');
     // }
 
-    public function edit(Contact $contact){
-        if(!$contact){abort(404);}
+    public function edit(Contact $contact)
+    {
+        if (!$contact) {
+            abort(404);
+        }
 
         return view('contact.edit', [
             'contact' => $contact
         ]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $contact = Contact::find($request->contact_id);
 
-        if(!$contact){abort(404);}
-        
+        if (!$contact) {
+            abort(404);
+        }
+
         $request->validate([
-            'name' => ['required', 'string', 'min:3', 'unique:contacts,name,'.$contact->id],
+            'name' => ['required', 'string', 'min:3', 'unique:contacts,name,' . $contact->id],
             'phone' => ['nullable'],
             'type' => ['required', 'in:weaver,sales'],
         ]);
@@ -101,6 +110,4 @@ class ContactController extends Controller
             'status' => ['Contact has been updated successfully'],
         ]);
     }
-
-    
 }

@@ -21,10 +21,10 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    // dashboard
+    /** Dashboard  */
     Route::get('/dashboard', [OrderController::class, 'getAllOrders'])->name('dashboard');
 
-    // orders
+    /** Orders  */
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
         Route::get('/', [OrderController::class, 'getAllOrders'])->name('index');
         Route::get('create', [OrderController::class, 'create'])->name('create');
@@ -41,18 +41,16 @@ Route::middleware('auth')->group(function () {
         Route::get('completed', [OrderController::class, 'getCompletedOrders'])->name('completed');
     });
 
-    // contacts
+    /** Contacts  */
     Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
         Route::get('/', [ContactController::class, 'index'])->name('index');
         Route::get('create', [ContactController::class, 'create'])->name('create');
         Route::post('store', [ContactController::class, 'store'])->name('store');
         Route::get('edit/{contact}', [ContactController::class, 'edit'])->name('edit');
         Route::post('update', [ContactController::class, 'update'])->name('update');
-        // Route::get('/delete/{contact}', [ContactController::class, 'confirm_delete'])->name('confirm-delete-contact');
-        // Route::post('/delete', [ContactController::class, 'delete'])->name('delete-contact');
     });
 
-    // deliveries
+    /** Deliveries  */
     Route::group(['prefix' => 'deliveries', 'as' => 'deliveries.'], function () {
         Route::get('/', [DeliveryController::class, 'viewDeliveryDates'])->name('index');
         Route::post('store', [DeliveryController::class, 'store'])->name('store');
