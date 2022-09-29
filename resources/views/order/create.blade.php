@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Orders | Create</x-slot>
     <h1 class="m-4 mx-1">Orders</h1>
-    <a href="{{ route('dashboard') }}" class="m-2 btn btn-outline-danger">Go back to dashboard</a>
+    <a href="{{ route('order.index') }}" class="m-2 btn btn-outline-danger">Go back to orders</a>
 
     <div class="card mb-4">
         <div class="card-header">

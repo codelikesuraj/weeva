@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     /** Dashboard  */
-    Route::get('/dashboard', [OrderController::class, 'getAllOrders'])->name('dashboard');
+    Route::get('/dashboard', [OrderController::class, 'dashboard'])->name('dashboard');
 
     /** Orders  */
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {

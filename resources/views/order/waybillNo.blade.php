@@ -2,7 +2,6 @@
 	<x-slot name="title">Waybill No: {{$waybill_no}}</x-slot>
 
 	<h1 class="m-4 mx-1">Waybill No: {{$waybill_no}}</h1>
-	<a href="{{route('dashboard')}}" class="m-2 btn btn-outline-danger">Go back to dashboard</a>
 
 	<div class="card mb-4">
 		<div class="card-header">
