@@ -22,7 +22,7 @@
                         <canvas id="myChart"></canvas>
                     </div>
                     <div class="col-12 col-sm">
-                        <a href="#" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                        <a href="{{route('order.index')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -35,7 +35,7 @@
                         </a>
                     </div>
                     <div class="col">
-                        <a href="#" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                        <a href="{{route('order.completed')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -48,7 +48,7 @@
                         </a>
                     </div>
                     <div class="col">
-                        <a href="#" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                        <a href="{{route('order.pending')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
