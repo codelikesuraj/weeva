@@ -122,10 +122,17 @@ class OrderController extends Controller
             return stripos($value['date_issued'], $thisMonthDate);
         })->count() ?? 0;
 
-        $contact_count = Contact::where([
+        $contacts_count = Contact::where([
             ['created_by', '=', $user_id],
             ['type', '=', 'sales'],
         ])->count();
+
+        $most_orders = Order::query()
+        ->selectRaw('issued_by, count(issued_by) as orders')
+        ->groupBy('issued_by')
+        ->where('owned_by', $user_id)
+        ->first();
+        $most_sets = $orders->where('quantity', $orders->max('quantity'))->first();
         
         return view('dashboard', [
             'total_orders' => $orders->count() ?? 0,
@@ -133,8 +140,10 @@ class OrderController extends Controller
             'pending_orders' => $orders->where('status', 'pending')->count() ?? 0,
             'orders_this_month' => $orders_this_month,
             'orders_last_month' => $orders_last_month,
-            'contact_count' => $contact_count,
+            'contact_count' => $contacts_count ?? 0,
             'data' => $chart,
+            'most_orders' => $most_orders,
+            'most_sets' => $most_sets,
         ]);
     }
 
