@@ -22,7 +22,7 @@
                         <canvas id="myChart"></canvas>
                     </div>
                     <div class="col-12 col-sm">
-                        <a href="{{route('order.index')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                        <a href="{{ route('order.index') }}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -35,7 +35,8 @@
                         </a>
                     </div>
                     <div class="col">
-                        <a href="{{route('order.completed')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                        <a href="{{ route('order.completed') }}"
+                            class="card card-stats mb-2 mb-xl-0 text-decoration-none">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -48,7 +49,8 @@
                         </a>
                     </div>
                     <div class="col">
-                        <a href="{{route('order.pending')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                        <a href="{{ route('order.pending') }}"
+                            class="card card-stats mb-2 mb-xl-0 text-decoration-none">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -73,6 +75,39 @@
                         @endif
                     </div>
                 @endif
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card card-stats mb-2 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Biggest Fan(s) ♥</h5>
+                                    <div class="row mt-2">
+                                        <div class="col-6 h3 mb-0 text-muted">
+                                            <a href="{{ route('order.issuedBy', $most_orders->issued_by) }}"
+                                                class="text-decoration-none">
+                                                {{ ucwords($most_orders->issuedBy->name ?? 'nobody') }}<br />
+                                                <span
+                                                    class="h5 text-dark">{{ number_format($most_orders->orders ?? 0) }}
+                                                    orders</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-6 h3 mb-0 text-muted">
+                                            <a href="{{ route('order.show', $most_sets->id) }}"
+                                                class="text-decoration-none">
+                                                {{ ucwords($most_sets->issuedBy->name ?? 'nobody') }}<br />
+                                                <span
+                                                    class="h5 text-dark">{{ number_format($most_sets->quantity ?? 0) }}
+                                                    sets</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
