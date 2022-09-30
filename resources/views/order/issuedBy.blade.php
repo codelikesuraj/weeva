@@ -2,7 +2,6 @@
 	<x-slot name="title">Issued By: {{$issued_by}}</x-slot>
 
 	<h1 class="m-4 mx-1">Issued By: {{$issued_by}}</h1>
-	<a href="{{route('dashboard')}}" class="m-2 btn btn-outline-danger">Go back to dashboard</a>
 
 	<div class="card mb-4">
 		<div class="card-header">

@@ -85,9 +85,56 @@ class OrderController extends Controller
             ['type', '=', 'sales'],
         ])->count();
 
-        return view('dashboard', [
+        return view('order.all', [
             'orders' => $orders,
             'contact_count' => $contact_count,
+        ]);
+    }
+
+    public function dashboard()
+    {
+        $user_id = Auth::user()->id;
+
+        $chart_orders = Order::query()
+        ->selectRaw('MONTH(date_issued) as month, count(MONTH(date_issued)) as orders')
+        ->groupByRaw('month')
+        ->orderByRaw('month')
+        ->whereRaw('YEAR(date_issued) = '.date('Y').' AND owned_by = '.$user_id)
+        ->get();
+        
+        $chart = [];
+        foreach($chart_orders as $order){
+            $chart['labels'][] = date('M', mktime(0, 0, 0, $order['month'], 10));
+            $chart['data'][] = $order['orders'];
+        }
+
+        $orders = Order::query()
+            ->where('owned_by', '=', $user_id)
+            ->get();
+        
+        $lastMonthDate = Date("y-m", strtotime("first day of previous month"));
+        $thisMonthDate = Date("y-m");
+
+        $orders_last_month = $orders->filter(function ($value) use ($lastMonthDate){
+            return stripos($value['date_issued'], $lastMonthDate);
+        })->count() ?? 0;
+        $orders_this_month = $orders->filter(function ($value) use ($thisMonthDate){
+            return stripos($value['date_issued'], $thisMonthDate);
+        })->count() ?? 0;
+
+        $contact_count = Contact::where([
+            ['created_by', '=', $user_id],
+            ['type', '=', 'sales'],
+        ])->count();
+        
+        return view('dashboard', [
+            'total_orders' => $orders->count() ?? 0,
+            'completed_orders' => $orders->where('status', 'complete')->count() ?? 0,
+            'pending_orders' => $orders->where('status', 'pending')->count() ?? 0,
+            'orders_this_month' => $orders_this_month,
+            'orders_last_month' => $orders_last_month,
+            'contact_count' => $contact_count,
+            'data' => $chart,
         ]);
     }
 

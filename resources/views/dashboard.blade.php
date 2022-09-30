@@ -7,18 +7,59 @@
             <x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />
         @endif
 
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center px-1">
             <div class="d-flex justify-content-start align-items-center">
-                <h4 class="ms-2">All Orders </h4>
+                <h1 class="py-1">Orders</h1>
             </div>
             <div>
                 <a href="{{ route('order.create') }}" class="btn btn-success p-1 px-2 small">Add</a>
             </div>
         </div>
-        <div class="p-1 card-body">
+        <div class="p-1">
             <div class="row">
-                @if ($orders && $orders->count() > 0)
-                    <x-orderList :orders="$orders" />
+                @if ($total_orders)
+                    <div class="col-12 mb-2">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="col-12 col-sm">
+                        <a href="{{route('order.index')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Total</h5>
+                                        <span
+                                            class="h2 font-weight-bold mb-0 text-dark">{{ number_format($total_orders) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="{{route('order.completed')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Completed</h5>
+                                        <span
+                                            class="h2 font-weight-bold mb-0 text-success">{{ number_format($completed_orders) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="{{route('order.pending')}}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Pending</h5>
+                                        <span
+                                            class="h2 font-weight-bold mb-0 text-warning">{{ number_format($pending_orders) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 @else
                     <div class="m-1">
                         @if ($contact_count < 1)
@@ -35,4 +76,38 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+        integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            data: {
+                labels: @json($data['labels']),
+                datasets: [{
+                    type: 'bar',
+                    label: 'Number of orders',
+                    data: @json($data['data']),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value, index, ticks) {
+                                if (Math.floor(value) === value) {
+                                    return value;
+                                }
+                            },
+                        },
+                    },
+                },
+            }
+        });
+    </script>
 </x-app-layout>
