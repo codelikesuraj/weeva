@@ -76,7 +76,7 @@
                     </div>
                 @endif
             </div>
-            <div class="row mt-4">
+            <div class="row mt-1">
                 <div class="col">
                     <div class="card card-stats mb-2 mb-xl-0">
                         <div class="card-body">
