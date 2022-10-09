@@ -151,7 +151,7 @@
 
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-1">
+                <div class="container-fluid px-1 w-100">
                     {{ $slot }}
                 </div>
             </main>

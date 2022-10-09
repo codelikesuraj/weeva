@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Dashboard</x-slot>
     <h1 class="m-4 mx-1">Dashboard</h1>
-    <div class="card mb-4">
+    <div class="card mb-4 mx-2">
         <!-- Success messages -->
         @if (Session::has('status'))
             <x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />

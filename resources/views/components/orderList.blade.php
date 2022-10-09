@@ -1,7 +1,7 @@
 @props(['orders'])
 
 @foreach ($orders as $order)
-    <div class="col-12">
+    <div class="shadow p-2 rounded bg-body my-2 border border-black">
         <div class="d-flex justify-content-between">
             <div>
                 <strong>No:</strong>
@@ -44,6 +44,5 @@
                 <strong>Customer:</strong>&nbsp;{{ ucwords($order->customer_name) }}
             </div>
         </div>
-        <hr class="m-1 mb-2">
     </div>
 @endforeach

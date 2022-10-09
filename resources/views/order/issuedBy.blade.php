@@ -1,17 +1,15 @@
 <x-app-layout>
-	<x-slot name="title">Issued By: {{$issued_by}}</x-slot>
+    <x-slot name="title">Issued By: {{ $issued_by }}</x-slot>
 
-	<h1 class="m-4 mx-1">Issued By: {{$issued_by}}</h1>
+    <h1 class="m-4 mx-1">Issued By: {{ $issued_by }}</h1>
 
-	<div class="card mb-4">
-		<div class="card-header">
-			<div class="d-flex justify-content-start align-items-center">
-				<h4 class="ms-2">Orders ({{$orders->count()}})</h4>
-			</div>
-		</div>
+    <div class="card-header d-flex justify-content-between align-items-center mx-2 rounded border border-black">
+        <div class="align-self-center fs-4">
+            Orders ({{ $orders->count() }})
+        </div>
+    </div>
 
-		<div class="card-body p-1">
-      		<x-orderList :orders="$orders" />
-		</div>
-	</div>
+    <div class="p-1 mx-1">
+        <x-orderList :orders="$orders" />
+    </div>
 </x-app-layout>
