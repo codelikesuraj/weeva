@@ -5,13 +5,13 @@
 
     <a href="{{ route('deliveries.index') }}" class="mb-2 mx-2 btn btn-outline-danger">Go back to deliveries</a>
 
-    <div class="card-header d-flex justify-content-start align-items-center mx-2 rounded border border-black">
+    <div class="card-header d-flex justify-content-start align-items-center mx-auto rounded border border-black">
         <div class="align-self-center fs-4">
             Deliveries ({{ $deliveries->count() > 0 ? $deliveries->count() : '0' }})
         </div>
     </div>
 
-    <div class="p-1 mx-1">
+    <div class="p-1 mx-auto">
         <!-- Success messages -->
         @if (Session::has('status'))
             <x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />

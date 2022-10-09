@@ -5,13 +5,13 @@
 
     <a href="{{ route('order.index') }}" class="mb-2 mx-2 btn btn-outline-danger">Go back to orders</a>
 
-    <div class="card-header d-flex justify-content-between align-items-center mx-2 rounded border border-black">
+    <div class="card-header d-flex justify-content-between align-items-center mx-auto rounded border border-black">
         <div class="align-self-center fs-4">
             Deliveries
         </div>
     </div>
 
-    <div class="p-1 mx-1">
+    <div class="p-1 mx-auto">
         @forelse($deliveries as $delivery)
             <a class="text-dark text-decoration-none"
                 href="{{ route('deliveries.date', [date('Y', strtotime($delivery->date_delivered)), date('m', strtotime($delivery->date_delivered)), date('d', strtotime($delivery->date_delivered))]) }}">

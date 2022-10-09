@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Dashboard</x-slot>
     <h1 class="m-4 mx-1">Dashboard</h1>
-    <div class="card mb-4 mx-2">
+    <div class="card mb-4 mx-1">
         <!-- Success messages -->
         @if (Session::has('status'))
             <x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />
@@ -19,10 +19,10 @@
             <div class="row">
                 @if ($total_orders)
                     <div class="col-12 mb-2">
-                        <canvas id="myChart"></canvas>
+                        <canvas id="myChart" class="border border-black shadow p-1"></canvas>
                     </div>
                     <div class="col-12 col-sm">
-                        <a href="{{ route('order.index') }}" class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                        <a href="{{ route('order.index') }}" class="card card-stats mb-2 mb-xl-0 text-decoration-none shadow">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="col">
                         <a href="{{ route('order.completed') }}"
-                            class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                            class="card card-stats mb-2 mb-xl-0 text-decoration-none shadow">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col">
                         <a href="{{ route('order.pending') }}"
-                            class="card card-stats mb-2 mb-xl-0 text-decoration-none">
+                            class="card card-stats mb-2 mb-xl-0 text-decoration-none shadow">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -78,7 +78,7 @@
             </div>
             <div class="row mt-1">
                 <div class="col">
-                    <div class="card card-stats mb-2 mb-xl-0">
+                    <div class="card card-stats mb-2 mb-xl-0 shadow">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">

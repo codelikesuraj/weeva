@@ -8,7 +8,7 @@
         <x-sbdash.auth-session-status :class="'mb-4 small'" :status="Session::get('status')" />
     @endif
 
-    <div class="card-header d-flex justify-content-between align-items-center mx-2 rounded border border-black">
+    <div class="card-header d-flex justify-content-between align-items-center mx-auto rounded border border-black">
         <div class="align-self-center fs-4">
             Pending ({{ $orders->count() > 0 ? $orders->count() : '0' }})
         </div>
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="p-1 mx-1">
+    <div class="p-1 mx-auto">
         @if ($orders && $orders->count() > 0)
             <x-orderList :orders="$orders" />
         @else
