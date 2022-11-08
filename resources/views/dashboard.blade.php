@@ -22,7 +22,8 @@
                         <canvas id="myChart" class="border border-black shadow p-1"></canvas>
                     </div>
                     <div class="col-12 col-sm">
-                        <a href="{{ route('order.index') }}" class="card card-stats mb-2 mb-xl-0 text-decoration-none shadow">
+                        <a href="{{ route('order.index') }}"
+                            class="card card-stats mb-2 mb-xl-0 text-decoration-none shadow">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -62,6 +63,43 @@
                             </div>
                         </a>
                     </div>
+                    <div class="row mt-1">
+                        <div class="col">
+                            <div class="card card-stats mb-2 mb-xl-0 shadow">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Biggest Fan(s) ♥</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-6 h3 mb-0 text-muted">
+                                                    @if ($most_orders)
+                                                        <a href="{{ route('order.issuedBy', $most_orders->issued_by) }}"
+                                                            class="text-decoration-none">
+                                                            {{ ucwords($most_orders->issuedBy->name ?? 'nobody') }}<br />
+                                                            <span
+                                                                class="h5 text-dark">{{ number_format($most_orders->orders ?? 0) }}
+                                                                orders</span>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                                <div class="col-6 h3 mb-0 text-muted">
+                                                    @if ($most_sets)
+                                                        <a href="{{ route('order.show', $most_sets->id) }}"
+                                                            class="text-decoration-none">
+                                                            {{ ucwords($most_sets->issuedBy->name ?? 'nobody') }}<br />
+                                                            <span
+                                                                class="h5 text-dark">{{ number_format($most_sets->quantity ?? 0) }}
+                                                                sets</span>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @else
                     <div class="m-1">
                         @if ($contact_count < 1)
@@ -76,39 +114,7 @@
                     </div>
                 @endif
             </div>
-            <div class="row mt-1">
-                <div class="col">
-                    <div class="card card-stats mb-2 mb-xl-0 shadow">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Biggest Fan(s) ♥</h5>
-                                    <div class="row mt-2">
-                                        <div class="col-6 h3 mb-0 text-muted">
-                                            <a href="{{ route('order.issuedBy', $most_orders->issued_by) }}"
-                                                class="text-decoration-none">
-                                                {{ ucwords($most_orders->issuedBy->name ?? 'nobody') }}<br />
-                                                <span
-                                                    class="h5 text-dark">{{ number_format($most_orders->orders ?? 0) }}
-                                                    orders</span>
-                                            </a>
-                                        </div>
-                                        <div class="col-6 h3 mb-0 text-muted">
-                                            <a href="{{ route('order.show', $most_sets->id) }}"
-                                                class="text-decoration-none">
-                                                {{ ucwords($most_sets->issuedBy->name ?? 'nobody') }}<br />
-                                                <span
-                                                    class="h5 text-dark">{{ number_format($most_sets->quantity ?? 0) }}
-                                                    sets</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
@@ -119,11 +125,11 @@
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
             data: {
-                labels: @json($data['labels']),
+                labels: @json($data['labels'] ?? []),
                 datasets: [{
                     type: 'bar',
                     label: 'Number of orders',
-                    data: @json($data['data']),
+                    data: @json($data['data'] ?? []),
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1

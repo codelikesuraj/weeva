@@ -46,19 +46,15 @@
                     <div class="nav">
                         <!-- Section -->
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} pb-2"
                             href="{{ route('dashboard') }}">
-                            <div class="sb-nav-link-icon d-flex align-items-center">
-                            </div>
                             Dashboard
                         </a>
 
                         <!-- Orders -->
-                        <a class="nav-link {{ request()->routeIs('order.*') ? 'active' : '' }}" href="#"
+                        <a class="nav-link {{ request()->routeIs('order.*') ? 'active' : '' }} py-2" href="#"
                             data-bs-toggle="collapse" data-bs-target="#ordersMenu" aria-expanded="true"
                             aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon d-flex align-items-center">
-                            </div>
                             Orders
                             <div class="sb-sidenav-collapse-arrow">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -71,43 +67,35 @@
                         <div class="show" id="ordersMenu" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.create') ? 'active' : '' }}"
-                                    href="{{ route('order.create') }}">
-                                    <div class="sb-nav-link-icon">
-                                    </div>Add new order
+                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.create') ? 'active' : '' }} py-2"
+                                    href="{{ route('order.create') }}">Add new order
                                 </a>
-                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.index') ? 'active' : '' }}"
-                                    href="{{ route('order.index') }}">
-                                    <div class="sb-nav-link-icon">
-                                    </div>View all orders
+                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.index') ? 'active' : '' }} py-2"
+                                    href="{{ route('order.index') }}">View all orders
                                 </a>
-                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.pending') ? 'active' : '' }}"
-                                    href="{{ route('order.pending') }}">
-                                    <div class="sb-nav-link-icon">
-                                    </div>Pending orders
+                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.pending') ? 'active' : '' }} py-2"
+                                    href="{{ route('order.pending') }}">Pending orders
                                 </a>
-                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.completed') ? 'active' : '' }}"
-                                    href="{{ route('order.completed') }}">
-                                    <div class="sb-nav-link-icon">
-                                    </div>Completed orders
+                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.completed') ? 'active' : '' }} py-2"
+                                    href="{{ route('order.completed') }}">Completed orders
+                                </a>
+                                </a>
+                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('order.overdue') ? 'active' : '' }} py-2"
+                                    href="{{ route('order.overdue') }}">Overdue orders
                                 </a>
                             </nav>
                         </div>
 
                         <!-- Delivery -->
-                        <a class="nav-link {{ request()->routeIs('deliveries.*') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('deliveries.*') ? 'active' : '' }} py-2"
                             href="{{ route('deliveries.index') }}">
-                            <div class="sb-nav-link-icon">
-                            </div>
                             Deliveries
                         </a>
 
                         <!-- Contacts -->
-                        <a class="nav-link {{ request()->routeIs('contact.*') ? 'active' : '' }}" href="#"
+                        <a class="nav-link {{ request()->routeIs('contact.*') ? 'active' : '' }} py-2" href="#"
                             data-bs-toggle="collapse" data-bs-target="#contactsMenu" aria-expanded="true"
                             aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon">
-                            </div>
                             Contacts
                             <div class="sb-sidenav-collapse-arrow">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -120,15 +108,11 @@
                         <div class="show" id="contactsMenu" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('contact.create') ? 'active' : '' }}"
-                                    href="{{ route('contact.create') }}">
-                                    <div class="sb-nav-link-icon">
-                                    </div>Add new contact
+                                <a class="nav-link d-flex align-items-center {{ request()->routeIs('contact.create') ? 'active' : '' }} py-2"
+                                    href="{{ route('contact.create') }}">Add new contact
                                 </a>
-                                <a class="nav-link {{ request()->routeIs('contact.index') ? 'active' : '' }}"
-                                    href="{{ route('contact.index') }}">
-                                    <div class="sb-nav-link-icon">
-                                    </div>View all contacts
+                                <a class="nav-link {{ request()->routeIs('contact.index') ? 'active' : '' }} py-2"
+                                    href="{{ route('contact.index') }}">View all contacts
                                 </a>
                             </nav>
                         </div>

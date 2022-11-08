@@ -65,7 +65,8 @@ class OrderController extends Controller
             ['type', '=', 'sales'],
         ])->count();
 
-        return view('order.pending', [
+        return view('order.status', [
+            'status' => 'pending',
             'orders' => $orders,
             'contact_count' => $contact_count,
         ]);
@@ -85,7 +86,8 @@ class OrderController extends Controller
             ['type', '=', 'sales'],
         ])->count();
 
-        return view('order.all', [
+        return view('order.status', [
+            'status' => 'all',
             'orders' => $orders,
             'contact_count' => $contact_count,
         ]);
@@ -96,14 +98,14 @@ class OrderController extends Controller
         $user_id = Auth::user()->id;
 
         $chart_orders = Order::query()
-        ->selectRaw('MONTH(date_issued) as month, count(MONTH(date_issued)) as orders')
-        ->groupByRaw('month')
-        ->orderByRaw('month')
-        ->whereRaw('YEAR(date_issued) = '.date('Y').' AND owned_by = '.$user_id)
-        ->get();
-        
+            ->selectRaw('MONTH(date_issued) as month, count(MONTH(date_issued)) as orders')
+            ->groupByRaw('month')
+            ->orderByRaw('month')
+            ->whereRaw('YEAR(date_issued) = ' . date('Y') . ' AND owned_by = ' . $user_id)
+            ->get();
+
         $chart = [];
-        foreach($chart_orders as $order){
+        foreach ($chart_orders as $order) {
             $chart['labels'][] = date('M', mktime(0, 0, 0, $order['month'], 10));
             $chart['data'][] = $order['orders'];
         }
@@ -111,14 +113,14 @@ class OrderController extends Controller
         $orders = Order::query()
             ->where('owned_by', '=', $user_id)
             ->get();
-        
+
         $lastMonthDate = Date("y-m", strtotime("first day of previous month"));
         $thisMonthDate = Date("y-m");
 
-        $orders_last_month = $orders->filter(function ($value) use ($lastMonthDate){
+        $orders_last_month = $orders->filter(function ($value) use ($lastMonthDate) {
             return stripos($value['date_issued'], $lastMonthDate);
         })->count() ?? 0;
-        $orders_this_month = $orders->filter(function ($value) use ($thisMonthDate){
+        $orders_this_month = $orders->filter(function ($value) use ($thisMonthDate) {
             return stripos($value['date_issued'], $thisMonthDate);
         })->count() ?? 0;
 
@@ -128,12 +130,12 @@ class OrderController extends Controller
         ])->count();
 
         $most_orders = Order::query()
-        ->selectRaw('issued_by, count(issued_by) as orders')
-        ->groupBy('issued_by')
-        ->where('owned_by', $user_id)
-        ->first();
+            ->selectRaw('issued_by, count(issued_by) as orders')
+            ->groupBy('issued_by')
+            ->where('owned_by', $user_id)
+            ->first();
         $most_sets = $orders->where('quantity', $orders->max('quantity'))->first();
-        
+
         return view('dashboard', [
             'total_orders' => $orders->count() ?? 0,
             'completed_orders' => $orders->where('status', 'complete')->count() ?? 0,
@@ -166,7 +168,34 @@ class OrderController extends Controller
             ])
             ->count();
 
-        return view('order.completed', [
+        return view('order.status', [
+            'status' => 'completed',
+            'orders' => $orders,
+            'contact_count' => $contact_count,
+        ]);
+    }
+
+    public function getOverdueOrders()
+    {
+        $user_id = Auth::user()->id;
+
+        $orders = Order::query()
+            ->where([
+                ['owned_by', '=', $user_id],
+                ['status', '=', 'pending'],
+                ['deadline', '<', now()]
+            ])
+            ->get();
+
+        $contact_count = Contact::query()
+            ->where([
+                ['created_by', '=', $user_id],
+                ['type', '=', 'sales'],
+            ])
+            ->count();
+
+        return view('order.status', [
+            'status' => 'overdue',
             'orders' => $orders,
             'contact_count' => $contact_count,
         ]);

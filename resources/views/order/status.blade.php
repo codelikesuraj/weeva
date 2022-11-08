@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="title">Completed Orders</x-slot>
+    <x-slot name="title">{{ ucfirst($status) }} Orders</x-slot>
 
-    <h1 class="m-4 mx-1">Completed orders</h1>
+    <h1 class="m-4 mx-1">{{ ucfirst($status) }} orders</h1>
 
     <!-- Success messages -->
     @if (Session::has('status'))
@@ -10,7 +10,7 @@
 
     <div class="card-header d-flex justify-content-between align-items-center mx-auto rounded border border-black">
         <div class="align-self-center fs-4">
-            Completed ({{ $orders->count() > 0 ? $orders->count() : '0' }})
+            {{ ucfirst($status) . ' (' . ($orders->count() > 0 ? $orders->count() : '0') . ')' }}
         </div>
         <div>
             <a href="{{ route('order.create') }}" class="btn btn-success p-1 px-2 small">Add</a>
@@ -32,7 +32,7 @@
                                     href="{{ route('contact.create') }}">Add Contact</a></div>
                         </div>
                     @else
-                        No completed orders yet !!!
+                        No {{ $status == 'all' ? '' : $status }} orders yet!!!
                     @endif
                 </div>
             </div>

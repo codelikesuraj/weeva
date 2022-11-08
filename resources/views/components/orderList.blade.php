@@ -26,12 +26,20 @@
                     'order.index',
                     'order.pending',
                     'order.completed',
+                    'order.overdue',
                     'order.waybillNo',
                     'order.issuedBy'))
                     @if ($order->status == 'pending')
-                        <span class="bg-warning text-body px-1">
-                            <a class="text-body" href="{{ route('order.pending') }}">{{ ucfirst($order->status) }}</a>
-                        </span>
+                        @if (!is_null($order->deadline) && strtotime($order->deadline) < time())
+                            <span class="bg-danger text-white px-1">
+                                <a class="text-white" href="{{ route('order.overdue') }}">{{ ucfirst('Overdue') }}</a>
+                            </span>
+                        @else
+                            <span class="bg-warning text-body px-1">
+                                <a class="text-body"
+                                    href="{{ route('order.pending') }}">{{ ucfirst($order->status) }}</a>
+                            </span>
+                        @endif
                     @else
                         <span class="bg-success text-white px-1">
                             <a class="text-white"

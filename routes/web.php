@@ -27,9 +27,9 @@ Route::middleware('auth')->group(function () {
     /** Orders  */
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
         Route::get('/', [OrderController::class, 'getAllOrders'])->name('index');
+        Route::get('show/{order}', [OrderController::class, 'viewOne'])->name('show');
         Route::get('create', [OrderController::class, 'create'])->name('create');
         Route::post('store', [OrderController::class, 'store'])->name('store');
-        Route::get('show/{order}', [OrderController::class, 'viewOne'])->name('show');
         Route::get('edit/{order}', [OrderController::class, 'edit'])->name('edit');
         Route::post('update/{order}', [OrderController::class, 'update'])->name('update');
         Route::delete('delete', [OrderController::class, 'deleteOrder'])->name('delete');
@@ -37,8 +37,9 @@ Route::middleware('auth')->group(function () {
         Route::get('date/{year}/{month}/{day}', [OrderController::class, 'viewByDate'])->name('date');
         Route::get('waybill-no/{waybill_no}', [OrderController::class, 'waybillNo'])->name('waybillNo');
         Route::get('issued-by/{issued_by}', [OrderController::class, 'issuedBy'])->name('issuedBy');
-        Route::get('pending', [OrderController::class, 'getPendingOrders'])->name('pending');
         Route::get('completed', [OrderController::class, 'getCompletedOrders'])->name('completed');
+        Route::get('pending', [OrderController::class, 'getPendingOrders'])->name('pending');
+        Route::get('overdue', [OrderController::class, 'getOverdueOrders'])->name('overdue');
     });
 
     /** Contacts  */
